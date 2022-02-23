@@ -1,8 +1,9 @@
-import axios from "axios";
+import APIDataGetter from "./APIDataGetter";
 
-const GitAPI = axios.create({
-  baseURL: "https://api.github.com",
-  timeout: 5000,
-});
+export default class APIConfig {
+  private dataGetter: APIDataGetter;
 
-export default GitAPI;
+  constructor(private username: string) {
+    this.dataGetter = new APIDataGetter(this.username);
+  }
+}

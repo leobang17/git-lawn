@@ -1,5 +1,5 @@
 import axios from "axios";
-import { AxiosInstance, AxiosError } from "../../node_modules/axios/index";
+import { AxiosInstance } from "axios";
 
 import { EventType, PublicEventRequirements } from "../@types/dataTypes";
 
@@ -33,26 +33,25 @@ export default class APIDataGetter {
   }
 
   async getEvents() {
-    let endjob = false;
     const queryObj: Required<PublicEventRequirements> = {
       username: this.username,
       per_page: 100,
       page: 1,
     };
 
-    const entireEvents: EventType[] = new Array<EventType>();
+    let entireEvents: EventType[] = new Array<EventType>();
 
-    // while (!endjob) {
-    try {
-      const query = this.queryBuilder(queryObj);
-      const res = await this.fetchEvents(query);
-      console.log(res);
-      entireEvents.push(...res);
-    } catch (err) {
-      console.log("끝");
-      endjob = true;
+    while (true) {
+      try {
+        const query = this.queryBuilder(queryObj);
+        const res = await this.fetchEvents(query);
+        await entireEvents.push(...res);
+      } catch (err) {
+        break;
+      }
+      queryObj.page += 1;
     }
-    // }
+
     return entireEvents;
   }
 }
