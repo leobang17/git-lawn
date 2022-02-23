@@ -3,7 +3,7 @@ import Lawn from "../molecules/lawn";
 
 const GitLawn = () => {
   // return <div>GitLawn</div>;
-  return <Lawn grassSpan={40} />;
+  return <Lawn grassSpan={30} />;
 };
 
 export default GitLawn;

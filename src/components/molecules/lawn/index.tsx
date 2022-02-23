@@ -1,18 +1,10 @@
 import React, { useEffect, useState } from "react";
-import styled from "styled-components";
-import { LawnProps, LawnStyleProps } from "../../../@types/dataTypes";
-import Grass from "../../atoms/grass";
-import { lawnSizeCalculator } from "./hooks";
 
-const LawnBox = styled.div<LawnStyleProps>`
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  align-content: flex-start;
-  height: ${(props) => props.lawnHeight}px;
-  width: ${(props) => props.lawnWidth}px;
-  background-color: skyblue;
-`;
+import { LawnProps } from "../../../@types/dataTypes";
+import Grass from "../../atoms/grass";
+
+import { lawnSizeCalculator } from "./lawn.hooks";
+import { LawnBox } from "./lawn.style";
 
 const Lawn: React.FC<LawnProps> = ({ grassSpan }) => {
   const { lawnHeight, lawnWidth } = lawnSizeCalculator(grassSpan);
@@ -27,6 +19,7 @@ const Lawn: React.FC<LawnProps> = ({ grassSpan }) => {
       <Grass span={grassSpan} color="red" />
       <Grass span={grassSpan} color="red" />
       <Grass span={grassSpan} color="red" />
+
       <Grass span={grassSpan} color="red" />
       <Grass span={grassSpan} color="red" />
       <Grass span={grassSpan} color="red" />
@@ -34,9 +27,23 @@ const Lawn: React.FC<LawnProps> = ({ grassSpan }) => {
       <Grass span={grassSpan} color="red" />
       <Grass span={grassSpan} color="red" />
       <Grass span={grassSpan} color="red" />
+
       <Grass span={grassSpan} color="red" />
       <Grass span={grassSpan} color="red" />
       <Grass span={grassSpan} color="red" />
+      <Grass span={grassSpan} color="red" />
+      <Grass span={grassSpan} color="red" />
+      <Grass span={grassSpan} color="red" />
+      <Grass span={grassSpan} color="red" />
+
+      <Grass span={grassSpan} color="red" />
+      <Grass span={grassSpan} color="red" />
+      <Grass span={grassSpan} color="red" />
+      <Grass span={grassSpan} color="red" />
+      <Grass span={grassSpan} color="red" />
+      <Grass span={grassSpan} color="red" />
+      <Grass span={grassSpan} color="red" />
+
       <Grass span={grassSpan} color="red" />
       <Grass span={grassSpan} color="red" />
       <Grass span={grassSpan} color="red" />
