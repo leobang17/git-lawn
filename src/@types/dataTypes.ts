@@ -1,5 +1,5 @@
 // Component Property Type
 export interface GrassProps {
-  height: number;
+  span: number;
   color?: string;
 }

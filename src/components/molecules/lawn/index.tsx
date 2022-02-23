@@ -1,29 +1,47 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
+import Grass from "../../atoms/grass";
 
-const Div = styled.div`
+const LawnBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-content: flex-start;
   height: 300px;
-  width: 500px;
+  width: 800px;
   background-color: skyblue;
 `;
 
 const Lawn = () => {
-  const [curDate, setCurDate] = useState<number>(Date.now());
-  useEffect(() => {
-    console.log(curDate);
-    const datebuilder = new Date(curDate - 90);
-    const lastdate = new Date(curDate);
-    lastdate.setDate(lastdate.getDate() - 90);
-
-    console.log(datebuilder.toString());
-    console.log(lastdate);
-  }, []);
-
+  const grassSpan = 300 / 7;
+  console.log(grassSpan);
   return (
-    <Div>
-      <div>efef</div>
-      <div>fef</div>
-    </Div>
+    <LawnBox>
+      <Grass span={grassSpan} color="red" />
+      <Grass span={grassSpan} color="red" />
+      <Grass span={grassSpan} color="red" />
+      <Grass span={grassSpan} color="red" />
+      <Grass span={grassSpan} color="red" />
+      <Grass span={grassSpan} color="red" />
+      <Grass span={grassSpan} color="red" />
+      <Grass span={grassSpan} color="red" />
+      <Grass span={grassSpan} color="red" />
+      <Grass span={grassSpan} color="red" />
+      <Grass span={grassSpan} color="red" />
+      <Grass span={grassSpan} color="red" />
+      <Grass span={grassSpan} color="red" />
+      <Grass span={grassSpan} color="red" />
+      <Grass span={grassSpan} color="red" />
+      <Grass span={grassSpan} color="red" />
+      <Grass span={grassSpan} color="red" />
+      <Grass span={grassSpan} color="red" />
+      <Grass span={grassSpan} color="red" />
+      <Grass span={grassSpan} color="red" />
+      <Grass span={grassSpan} color="red" />
+      <Grass span={grassSpan} color="red" />
+      <Grass span={grassSpan} color="red" />
+      <Grass span={grassSpan} color="red" />
+    </LawnBox>
   );
 };
 
