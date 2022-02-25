@@ -2,8 +2,9 @@ import axios from "axios";
 import { AxiosInstance } from "axios";
 
 import { EventType, PublicEventRequirements } from "../@types/dataTypes";
+import { DataGetterAbstract } from "./api.interfaces";
 
-export default class APIDataGetter {
+export default class APIDataGetter implements DataGetterAbstract {
   static BASE_URL = "https://api.github.com";
   private GitAPI: AxiosInstance;
 

@@ -27,3 +27,8 @@ export interface RepoType {
   name: string;
   url: string;
 }
+
+export interface CommitRowType {
+  date: Date;
+  count: number;
+}
