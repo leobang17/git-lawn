@@ -1,6 +1,6 @@
-import { strictEqual } from "assert";
-import { DataGetterAbstract } from "./api.interfaces";
+import { DataGetterAbstract, DataRefinerAbstract } from "./api.interfaces";
 import APIDataGetter from "./APIDataGetter";
+import APIDataRefiner from "./APIDataRefiner";
 import RequestInstance from "./RequestInstance";
 
 export default class APIConfig {
@@ -16,5 +16,9 @@ export default class APIConfig {
 
   public apiDataGetter(): DataGetterAbstract {
     return new APIDataGetter(this.username, this.requireInstance());
+  }
+
+  public apiDataRefiner(): DataRefinerAbstract {
+    return new APIDataRefiner(this.apiDataGetter());
   }
 }
