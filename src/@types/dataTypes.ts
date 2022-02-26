@@ -10,7 +10,7 @@ export interface EventType {
   type: string;
   actor: ActorType;
   repo: RepoType;
-  payload: { [key: string]: unknown };
+  payload: PushEventType | { [key: string]: unknown };
   created_at: string;
 }
 
@@ -29,8 +29,24 @@ export interface RepoType {
   url: string;
 }
 
+export interface PushEventType {
+  push_id: number;
+  size: number;
+  distinct_size: number;
+  ref: string;
+  head: string;
+  before: string;
+  commits: Array<unknown>;
+}
+
 // API Feature Types
 export interface CommitRowType {
   date: Date;
   count: number;
+}
+
+export interface YMD {
+  year: number;
+  month: number;
+  date: number;
 }
