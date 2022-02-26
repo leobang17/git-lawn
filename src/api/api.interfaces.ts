@@ -5,5 +5,5 @@ export interface DataGetterAbstract {
 }
 
 export interface DataRefinerAbstract {
-  getCommitHistory: (eventRows: EventType[]) => Promise<CommitRowType[]>;
+  getCommitHistory: () => Promise<CommitRowType[]>;
 }

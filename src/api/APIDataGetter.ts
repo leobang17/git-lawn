@@ -3,7 +3,6 @@ import { AxiosInstance } from "axios";
 
 import { EventType, PublicEventRequirements } from "../@types/dataTypes";
 import { DataGetterAbstract } from "./api.interfaces";
-import RequestInstance from "./RequestInstance";
 
 export default class APIDataGetter implements DataGetterAbstract {
   constructor(private username: string, private GitAPI: AxiosInstance) {}
@@ -35,12 +34,14 @@ export default class APIDataGetter implements DataGetterAbstract {
 
     let entireEvents: EventType[] = new Array<EventType>();
 
-    while (true) {
+    while (queryObj.page < 4) {
       try {
         const query = this.queryBuilder(queryObj);
         const res = await this.fetchEvents(query);
+        console.log("요청");
         await entireEvents.push(...res);
       } catch (err) {
+        console.log("에러가 발견되었음!");
         break;
       }
       queryObj.page += 1;

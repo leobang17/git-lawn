@@ -1,13 +1,14 @@
 import React from "react";
 import { useEffect } from "react";
-import GitAPI from "../../api/APIConfig";
-import APIDataGetter from "../../api/APIDataGetter";
+import APIConfig from "../../api/APIConfig";
 
 const GitLawn = () => {
   // 지우고 merge할 것.
+
+  const apiConfig = new APIConfig("leobang17");
+  const dataRefiner = apiConfig.apiDataRefiner();
   const fetchAPI = async () => {
-    // const dataGetter = new APIDataGetter("leobang17");
-    // const res = await dataGetter.getEvents();
+    const res = dataRefiner.getCommitHistory();
   };
 
   useEffect(() => {
