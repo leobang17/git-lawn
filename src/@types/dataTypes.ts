@@ -1,3 +1,4 @@
+// Github API Types
 export interface PublicEventRequirements {
   username: string;
   per_page?: number;
@@ -28,6 +29,7 @@ export interface RepoType {
   url: string;
 }
 
+// API Feature Types
 export interface CommitRowType {
   date: Date;
   count: number;

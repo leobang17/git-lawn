@@ -1,4 +1,3 @@
-import { AxiosInstance } from "axios";
 import { CommitRowType, EventType } from "../@types/dataTypes";
 
 export interface DataGetterAbstract {

@@ -1,19 +1,12 @@
-import axios from "axios";
+import axios, { Axios } from "axios";
 import { AxiosInstance } from "axios";
 
 import { EventType, PublicEventRequirements } from "../@types/dataTypes";
 import { DataGetterAbstract } from "./api.interfaces";
+import RequestInstance from "./RequestInstance";
 
 export default class APIDataGetter implements DataGetterAbstract {
-  static BASE_URL = "https://api.github.com";
-  private GitAPI: AxiosInstance;
-
-  constructor(private username: string) {
-    this.GitAPI = axios.create({
-      baseURL: APIDataGetter.BASE_URL,
-      timeout: 5000,
-    });
-  }
+  constructor(private username: string, private GitAPI: AxiosInstance) {}
 
   private queryBuilder(params: PublicEventRequirements) {
     let { username, per_page, page } = params;
