@@ -1,9 +1,10 @@
 import React from "react";
+import GitLawn from "./components/organisms";
 
 function App() {
   return (
     <>
-      <div>가나다라</div>
+      <GitLawn />
     </>
   );
 }
