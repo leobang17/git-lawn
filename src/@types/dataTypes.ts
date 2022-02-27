@@ -41,7 +41,7 @@ export interface PushEventType {
 
 // API Feature Types
 export interface CommitRowType {
-  date: Date;
+  date: YMD;
   count: number;
 }
 
