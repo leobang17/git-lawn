@@ -29,7 +29,7 @@ export default class APIDataGetter implements DataGetterAbstract {
     const queryObj: Required<PublicEventRequirements> = {
       username: this.username,
       per_page: 100,
-      page: 1,
+      page: 0,
     };
 
     let entireEvents: EventType[] = new Array<EventType>();

@@ -18,13 +18,13 @@ export default class APIDataRefiner implements DataRefinerAbstract {
     const toDate = new Date(dateString);
     return {
       year: toDate.getFullYear(),
-      month: toDate.getMonth(),
+      month: toDate.getMonth() + 1,
       date: toDate.getDate(),
     };
   }
 
   private isToday(prev: YMD, current: YMD) {
-    if (prev === current) {
+    if (JSON.stringify(prev) === JSON.stringify(current)) {
       return true;
     }
     return false;
@@ -32,27 +32,27 @@ export default class APIDataRefiner implements DataRefinerAbstract {
 
   private refineCommitData(pushEventRows: EventType[]) {
     let prevDate = {} as YMD;
+    const commitHistory: CommitRowType[] = [] as CommitRowType[];
 
-    return pushEventRows.map((event) => {
+    pushEventRows.forEach((event) => {
       const payload = event.payload as PushEventType;
       const commitCount = payload.commits.length;
       const createdDate = this.fullDateToYMD(event.created_at);
-      if (this.isToday(prevDate, createdDate)) {
-      }
 
-      return {
-        commitDate,
-        commitCount,
-      };
+      if (this.isToday(prevDate, createdDate)) {
+        commitHistory[commitHistory.length - 1].count += commitCount;
+      } else {
+        commitHistory.push({ date: createdDate, count: commitCount });
+      }
+      prevDate = { ...createdDate };
     });
+
+    return commitHistory;
   }
 
-  async getCommitHistory(): Promise<CommitRowType[]> {
+  public async getCommitHistory(): Promise<CommitRowType[]> {
     const eventRows = await this.apiDataGetter.getEvents();
     const pushEventRows = this.extractPushEvent(eventRows);
-    console.log(this.refineCommitData(pushEventRows));
-    return new Promise((res, rej) => {
-      res([{ date: new Date(), count: 1 }]);
-    });
+    return this.refineCommitData(pushEventRows);
   }
 }
