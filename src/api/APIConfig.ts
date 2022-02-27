@@ -10,11 +10,11 @@ export default class APIConfig {
     this.username = username;
   }
 
-  public requireInstance() {
+  private requireInstance() {
     return RequestInstance.getInstance();
   }
 
-  public apiDataGetter(): DataGetterAbstract {
+  private apiDataGetter(): DataGetterAbstract {
     return new APIDataGetter(this.username, this.requireInstance());
   }
 

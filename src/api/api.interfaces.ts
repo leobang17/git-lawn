@@ -6,4 +6,5 @@ export interface DataGetterAbstract {
 
 export interface DataRefinerAbstract {
   getCommitHistory: () => Promise<CommitRowType[]>;
+  // getStartDate: () => Date;
 }

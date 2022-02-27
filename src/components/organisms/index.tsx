@@ -8,7 +8,9 @@ const GitLawn = () => {
   const apiConfig = new APIConfig("leobang17");
   const dataRefiner = apiConfig.apiDataRefiner();
   const fetchAPI = async () => {
-    const res = dataRefiner.getCommitHistory();
+    const res = await dataRefiner.getCommitHistory();
+    // console.log(dataRefiner.getStartDate());
+    console.log(res);
   };
 
   useEffect(() => {

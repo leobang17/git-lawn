@@ -41,7 +41,7 @@ export interface PushEventType {
 
 // API Feature Types
 export interface CommitRowType {
-  date: YMD;
+  date: Date;
   count: number;
 }
 
@@ -49,4 +49,8 @@ export interface YMD {
   year: number;
   month: number;
   date: number;
+}
+
+export class CommitRow implements CommitRowType {
+  constructor(public date: Date, public count: number) {}
 }
