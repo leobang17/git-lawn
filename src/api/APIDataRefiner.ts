@@ -1,45 +1,31 @@
 import { CommitRowType, EventType, PushEventType } from "../@types/dataTypes";
 
-import { DataGetterAbstract, DataRefinerAbstract } from "./api.interfaces";
+import {
+  DataGetterAbstract,
+  DataRefinerAbstract,
+  DateService,
+} from "./api.interfaces";
 
 export default class APIDataRefiner implements DataRefinerAbstract {
-  constructor(private apiDataGetter: DataGetterAbstract) {}
+  constructor(
+    private apiDataGetter: DataGetterAbstract,
+    private dateService: DateService
+  ) {}
 
   private extractPushEvent(eventRows: EventType[]) {
     return eventRows.filter((event) => event.type === "PushEvent");
   }
 
-  private fullDateToYMD(dateString: string): Date {
-    return new Date(dateString.split("T")[0]);
-  }
-
-  private getStartDate() {
-    const currentDate = this.getCurrentDate();
-    currentDate.setMonth(currentDate.getMonth() - 3);
-
-    return currentDate;
-  }
-
-  private getCurrentDate() {
-    const currentDate = new Date();
-    currentDate.setHours(9);
-    currentDate.setMinutes(0);
-    currentDate.setSeconds(0);
-    currentDate.setMilliseconds(0);
-
-    return currentDate;
-  }
-
   private refineCommitData(pushEventRows: EventType[]) {
     const commitHistory: CommitRowType[] = [] as CommitRowType[];
-    const today = this.getCurrentDate();
-    let tempDate = this.getStartDate();
+    const today = this.dateService.getCurrentDate();
+    let tempDate = this.dateService.getStartDate();
     const reversedEventRows = pushEventRows.reverse();
 
     reversedEventRows.forEach((event) => {
       const payload = event.payload as PushEventType;
       const commitCount = payload.commits.length;
-      const createdDate = this.fullDateToYMD(event.created_at);
+      const createdDate = this.dateService.toDate(event.created_at);
 
       while (tempDate.getTime() < createdDate.getTime()) {
         commitHistory.push({ date: tempDate, count: 0 });

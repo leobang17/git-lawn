@@ -8,3 +8,9 @@ export interface DataRefinerAbstract {
   getCommitHistory: () => Promise<CommitRowType[]>;
   // getStartDate: () => Date;
 }
+
+export interface DateService {
+  toDate: (dateString: string) => Date;
+  getStartDate: () => Date;
+  getCurrentDate: () => Date;
+}
