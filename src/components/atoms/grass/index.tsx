@@ -3,15 +3,15 @@ import styled from "styled-components";
 import { GrassProps } from "../../../@types/dataTypes";
 
 const Box = styled.div<GrassProps>`
-  height: ${(props) => props.span * 0.8}px;
-  width: ${(props) => props.span * 0.8}px;
-  margin: ${(props) => props.span * 0.1}px;
+  height: ${(props) => props.grassSpan * 0.8}px;
+  width: ${(props) => props.grassSpan * 0.8}px;
+  margin: ${(props) => props.grassSpan * 0.1}px;
   background-color: ${(props) => props.color};
-  border-radius: ${(props) => props.span * 0.15}px;
+  border-radius: ${(props) => props.grassSpan * 0.15}px;
 `;
 
-const Grass: React.FC<GrassProps> = ({ span, color }) => {
-  return <Box span={span} color={color} />;
+const Grass: React.FC<GrassProps> = ({ grassSpan, color }) => {
+  return <Box grassSpan={grassSpan} color={color} />;
 };
 
 export default Grass;
