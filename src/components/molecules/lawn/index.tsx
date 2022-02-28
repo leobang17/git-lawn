@@ -19,38 +19,6 @@ const Lawn: React.FC<LawnProps> = ({ grassSpan }) => {
       <Grass span={grassSpan} color="red" />
       <Grass span={grassSpan} color="red" />
       <Grass span={grassSpan} color="red" />
-
-      <Grass span={grassSpan} color="red" />
-      <Grass span={grassSpan} color="red" />
-      <Grass span={grassSpan} color="red" />
-      <Grass span={grassSpan} color="red" />
-      <Grass span={grassSpan} color="red" />
-      <Grass span={grassSpan} color="red" />
-      <Grass span={grassSpan} color="red" />
-
-      <Grass span={grassSpan} color="red" />
-      <Grass span={grassSpan} color="red" />
-      <Grass span={grassSpan} color="red" />
-      <Grass span={grassSpan} color="red" />
-      <Grass span={grassSpan} color="red" />
-      <Grass span={grassSpan} color="red" />
-      <Grass span={grassSpan} color="red" />
-
-      <Grass span={grassSpan} color="red" />
-      <Grass span={grassSpan} color="red" />
-      <Grass span={grassSpan} color="red" />
-      <Grass span={grassSpan} color="red" />
-      <Grass span={grassSpan} color="red" />
-      <Grass span={grassSpan} color="red" />
-      <Grass span={grassSpan} color="red" />
-
-      <Grass span={grassSpan} color="red" />
-      <Grass span={grassSpan} color="red" />
-      <Grass span={grassSpan} color="red" />
-      <Grass span={grassSpan} color="red" />
-      <Grass span={grassSpan} color="red" />
-      <Grass span={grassSpan} color="red" />
-      <Grass span={grassSpan} color="red" />
     </LawnBox>
   );
 };

@@ -11,7 +11,7 @@ export interface LawnProps {
 export interface LawnStyleProps {
   lawnHeight: number;
   lawnWidth: number;
-  
+}
 
 // Github API Types
 export interface PublicEventRequirements {
