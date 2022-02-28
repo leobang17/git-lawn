@@ -1,12 +1,14 @@
 // Component Property Type
-export interface GrassProps {
-  span: number;
+export interface GitLawnProps {
+  username: string;
+  grassSpan?: number;
   color?: string;
+  month?: number;
 }
 
-export interface LawnProps {
-  grassSpan: number;
-}
+export type GrassProps = Pick<LawnProps, "grassSpan" | "color">;
+
+export type LawnProps = Required<GitLawnProps>;
 
 export interface LawnStyleProps {
   lawnHeight: number;
