@@ -1,24 +1,33 @@
 import React, { useEffect, useState } from "react";
 
-import { LawnProps } from "../../../@types/dataTypes";
+import { CommitRowType, LawnProps } from "../../../@types/dataTypes";
 import Grass from "../../atoms/grass";
 
-import { lawnSizeCalculator } from "./lawn.hooks";
+import { fetchData, lawnSizeCalculator } from "./lawn.hooks";
 import { LawnBox } from "./lawn.style";
 
-const Lawn: React.FC<LawnProps> = ({ grassSpan }) => {
+const Lawn: React.FC<LawnProps> = ({ grassSpan, month, color }) => {
+  // States
   const { lawnHeight, lawnWidth } = lawnSizeCalculator(grassSpan);
+  const [commitHistory, setCommitHistory] = useState<CommitRowType[]>(
+    [] as CommitRowType[]
+  );
 
-  console.log(grassSpan);
+  // Effects
+  useEffect(() => {
+    fetchData(setCommitHistory, "leobang17");
+  }, []);
+
+  useEffect(() => {
+    console.log(commitHistory);
+  }, [commitHistory]);
+
+  // Render
   return (
     <LawnBox lawnHeight={lawnHeight} lawnWidth={lawnWidth}>
-      <Grass span={grassSpan} color="red" />
-      <Grass span={grassSpan} color="red" />
-      <Grass span={grassSpan} color="red" />
-      <Grass span={grassSpan} color="red" />
-      <Grass span={grassSpan} color="red" />
-      <Grass span={grassSpan} color="red" />
-      <Grass span={grassSpan} color="red" />
+      {commitHistory.map((iter, key) => {
+        return <Grass grassSpan={grassSpan} color={color} />;
+      })}
     </LawnBox>
   );
 };
