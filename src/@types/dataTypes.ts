@@ -6,9 +6,9 @@ export interface GitLawnProps {
   month?: number;
 }
 
-export type GrassProps = Pick<LawnProps, "grassSpan" | "color">;
-
 export type LawnProps = Required<GitLawnProps>;
+
+export type GrassProps = Pick<LawnProps, "grassSpan" | "color">;
 
 export interface LawnStyleProps {
   lawnHeight: number;
