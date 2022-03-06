@@ -1,4 +1,4 @@
-import { CommitRowType, EventType, PushEventType } from "../@types/dataTypes";
+import { CommitRowType, EventType, PushEventType } from "../@types";
 
 import {
   DataGetterAbstract,

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-import { CommitRowType, LawnProps } from "../../../@types/dataTypes";
+import { CommitRowType, LawnProps } from "../../../@types";
 import Grass from "../../atoms/grass";
 
 import { fetchData, lawnSizeCalculator } from "./lawn.hooks";
@@ -26,7 +26,9 @@ const Lawn: React.FC<LawnProps> = ({ grassSpan, month, color }) => {
   return (
     <LawnBox lawnHeight={lawnHeight} lawnWidth={lawnWidth}>
       {commitHistory.map((iter, key) => {
-        return <Grass grassSpan={grassSpan} color={color} />;
+        return (
+          <Grass grassSpan={grassSpan} color={color} commitCount={iter.count} />
+        );
       })}
     </LawnBox>
   );

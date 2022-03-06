@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction, useEffect } from "react";
-import { CommitRowType } from "../../../@types/dataTypes";
+import { CommitRowType } from "../../../@types";
 import APIConfig from "../../../api/APIConfig";
 
 export const lawnSizeCalculator = (grassSpan: number) => {

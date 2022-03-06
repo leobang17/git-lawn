@@ -8,7 +8,13 @@ export interface GitLawnProps {
 
 export type LawnProps = Required<GitLawnProps>;
 
-export type GrassProps = Pick<LawnProps, "grassSpan" | "color">;
+// export type GrassProps = Pick<LawnProps, "grassSpan" | "color">;
+
+export type GrassProps = {
+  grassSpan: number;
+  color: string;
+  commitCount: number;
+};
 
 export interface LawnStyleProps {
   lawnHeight: number;

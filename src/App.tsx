@@ -4,7 +4,7 @@ import GitLawn from "./components/organisms";
 function App() {
   return (
     <>
-      <GitLawn username="leobang17" grassSpan={70} />
+      <GitLawn username="leobang17" grassSpan={30} />
     </>
   );
 }

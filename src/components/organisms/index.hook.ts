@@ -1,4 +1,4 @@
-import { GitLawnProps, LawnProps } from "../../@types/dataTypes";
+import { GitLawnProps, LawnProps } from "../../@types";
 
 export const defaultConfig = (
   params: Pick<GitLawnProps, "color" | "grassSpan" | "month">

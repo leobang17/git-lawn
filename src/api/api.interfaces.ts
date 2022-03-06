@@ -1,4 +1,4 @@
-import { CommitRowType, EventType } from "../@types/dataTypes";
+import { CommitRowType, EventType } from "../@types";
 
 export interface DataGetterAbstract {
   getEvents: () => Promise<EventType[]>;

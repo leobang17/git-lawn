@@ -1,5 +1,5 @@
 import React from "react";
-import { GitLawnProps, LawnProps } from "../../@types/dataTypes";
+import { GitLawnProps, LawnProps } from "../../@types";
 import Lawn from "../molecules/lawn";
 import { defaultConfig } from "./index.hook";
 
