@@ -2,13 +2,11 @@
 export interface GitLawnProps {
   username: string;
   grassSpan?: number;
-  color?: string;
+  color?: ColorType;
   month?: number;
 }
 
 export type LawnProps = Required<GitLawnProps>;
-
-// export type GrassProps = Pick<LawnProps, "grassSpan" | "color">;
 
 export type GrassProps = {
   grassSpan: number;
@@ -61,6 +59,11 @@ export interface PushEventType {
   before: string;
   commits: Array<unknown>;
 }
+
+// Color Property Type
+export type ColorIdx = 0 | 1 | 2 | 3 | 4;
+
+export type ColorType = "GREEN" | "BLUE";
 
 // API Feature Types
 export interface CommitRowType {

@@ -5,7 +5,7 @@ export const defaultConfig = (
 ): Required<Pick<GitLawnProps, "color" | "grassSpan" | "month">> => {
   let { color, grassSpan, month } = params;
   if (!color) {
-    color = "green";
+    color = "GREEN";
   }
   if (!grassSpan) {
     grassSpan = 30;
