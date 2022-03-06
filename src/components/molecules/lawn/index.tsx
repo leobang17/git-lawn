@@ -1,21 +1,23 @@
 import React, { useEffect, useState } from "react";
 
-import { CommitRowType, LawnProps } from "../../../@types";
+import { ColorIdx, CommitRowType, LawnProps } from "../../../@types";
+import { GRASS_COLOR } from "../../../@types/static";
 import Grass from "../../atoms/grass";
 
-import { fetchData, lawnSizeCalculator } from "./lawn.hooks";
+import { colorDistributor, fetchData, lawnSizeCalculator } from "./lawn.hooks";
 import { LawnBox } from "./lawn.style";
 
 const Lawn: React.FC<LawnProps> = ({ grassSpan, month, color }) => {
   // States
   const { lawnHeight, lawnWidth } = lawnSizeCalculator(grassSpan);
+  const [maxCount, setMaxCount] = useState(0);
   const [commitHistory, setCommitHistory] = useState<CommitRowType[]>(
     [] as CommitRowType[]
   );
 
   // Effects
   useEffect(() => {
-    fetchData(setCommitHistory, "leobang17");
+    fetchData(setCommitHistory, setMaxCount, "leobang17");
   }, []);
 
   useEffect(() => {
@@ -25,9 +27,15 @@ const Lawn: React.FC<LawnProps> = ({ grassSpan, month, color }) => {
   // Render
   return (
     <LawnBox lawnHeight={lawnHeight} lawnWidth={lawnWidth}>
-      {commitHistory.map((iter, key) => {
+      {commitHistory.map((iter, idx) => {
+        const colorIdx = colorDistributor(maxCount, iter.count) as ColorIdx;
         return (
-          <Grass grassSpan={grassSpan} color={color} commitCount={iter.count} />
+          <Grass
+            key={idx}
+            grassSpan={grassSpan}
+            color={GRASS_COLOR[color][colorIdx]}
+            commitCount={iter.count}
+          />
         );
       })}
     </LawnBox>

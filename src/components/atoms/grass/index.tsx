@@ -13,7 +13,7 @@ const Box = styled.div<GrassProps>`
 const Grass: React.FC<GrassProps> = ({ grassSpan, color, commitCount }) => {
   return (
     <Box grassSpan={grassSpan} color={color} commitCount={commitCount}>
-      {commitCount}
+      {/* {commitCount} */}
     </Box>
   );
 };
