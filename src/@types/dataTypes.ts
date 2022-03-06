@@ -13,6 +13,10 @@ export interface LawnStyleProps {
   lawnWidth: number;
 }
 
+export interface ContributionBoxProps extends CommitRow {
+  span: number;
+}
+
 // Github API Types
 export interface PublicEventRequirements {
   username: string;
