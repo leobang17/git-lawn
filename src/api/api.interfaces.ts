@@ -5,7 +5,10 @@ export interface DataGetterAbstract {
 }
 
 export interface DataRefinerAbstract {
-  getCommitHistory: () => Promise<CommitRowType[]>;
+  getCommitHistory: () => Promise<{
+    commitRows: CommitRowType[];
+    maxCount: number;
+  }>;
   // getStartDate: () => Date;
 }
 

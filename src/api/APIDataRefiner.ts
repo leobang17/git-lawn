@@ -21,6 +21,7 @@ export default class APIDataRefiner implements DataRefinerAbstract {
     const today = this.dateService.getCurrentDate();
     let tempDate = this.dateService.getStartDate();
     const reversedEventRows = pushEventRows.reverse();
+    let maxCount = 0;
 
     reversedEventRows.forEach((event) => {
       const payload = event.payload as PushEventType;
@@ -38,8 +39,14 @@ export default class APIDataRefiner implements DataRefinerAbstract {
           createdDate.getTime()
       ) {
         commitHistory[commitHistory.length - 1].count += commitCount;
+        if (commitHistory[commitHistory.length - 1].count > maxCount) {
+          maxCount = commitHistory[commitHistory.length - 1].count;
+        }
       } else {
         commitHistory.push({ date: createdDate, count: commitCount });
+        if (commitHistory[commitHistory.length - 1].count > maxCount) {
+          maxCount = commitHistory[commitHistory.length - 1].count;
+        }
       }
     });
 
@@ -48,12 +55,13 @@ export default class APIDataRefiner implements DataRefinerAbstract {
       tempDate = new Date(tempDate.setDate(tempDate.getDate() + 1));
     }
 
-    return commitHistory;
+    return { commitRows: commitHistory, maxCount };
   }
 
-  public async getCommitHistory(): Promise<CommitRowType[]> {
+  public async getCommitHistory() {
     const eventRows = await this.apiDataGetter.getEvents();
     const pushEventRows = this.extractPushEvent(eventRows);
-    return this.refineCommitData(pushEventRows);
+    const { commitRows, maxCount } = this.refineCommitData(pushEventRows);
+    return { commitRows, maxCount };
   }
 }
