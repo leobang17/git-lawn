@@ -1,11 +1,14 @@
-import { Dispatch, SetStateAction, useEffect } from "react";
+import { Dispatch, SetStateAction } from "react";
 import { CommitRowType } from "../../../@types";
 import { UnvisibleCommitRow } from "../../../@types/domain";
 import APIConfig from "../../../api/APIConfig";
 
-export const lawnSizeCalculator = (grassSpan: number) => {
+export const lawnSizeCalculator = (
+  grassSpan: number,
+  lawnBoxWidth: number = 14
+) => {
   const lawnHeight = grassSpan * 7;
-  const lawnWidth = grassSpan * 14;
+  const lawnWidth = grassSpan * lawnBoxWidth;
   return { lawnHeight, lawnWidth };
 };
 
@@ -22,9 +25,14 @@ export const fetchData = async (
   const daysToFill = getDaysToFill(commitRows);
 
   fillUnvisibleGrass(commitRows, daysToFill);
-  console.log(commitRows);
+
   commitHisrotySetter(commitRows);
   maxCountSetter(maxCount);
+};
+
+export const lawnWidthCountCalculator = (commitRows: CommitRowType[]) => {
+  const rowLength = commitRows.length;
+  return Math.ceil(rowLength / 7);
 };
 
 const getDaysToFill = (targetArr: CommitRowType[]) => {
