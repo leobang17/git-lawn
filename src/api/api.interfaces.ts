@@ -1,11 +1,14 @@
-import { CommitRowType, EventType } from "../@types/dataTypes";
+import { CommitRowType, EventType } from "../@types";
 
 export interface DataGetterAbstract {
   getEvents: () => Promise<EventType[]>;
 }
 
 export interface DataRefinerAbstract {
-  getCommitHistory: () => Promise<CommitRowType[]>;
+  getCommitHistory: () => Promise<{
+    commitRows: CommitRowType[];
+    maxCount: number;
+  }>;
   // getStartDate: () => Date;
 }
 

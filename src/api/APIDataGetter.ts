@@ -1,7 +1,7 @@
 import axios, { Axios } from "axios";
 import { AxiosInstance } from "axios";
 
-import { EventType, PublicEventRequirements } from "../@types/dataTypes";
+import { EventType, PublicEventRequirements } from "../@types";
 import { DataGetterAbstract } from "./api.interfaces";
 
 export default class APIDataGetter implements DataGetterAbstract {

@@ -1,12 +1,19 @@
 // Component Property Type
-export interface GrassProps {
-  span: number;
-  color?: string;
+export interface GitLawnProps {
+  username: string;
+  grassSpan?: number;
+  color?: ColorType;
+  month?: number;
 }
 
-export interface LawnProps {
+export type LawnProps = Required<GitLawnProps>;
+
+export type GrassProps = {
   grassSpan: number;
-}
+  color: string;
+  commitCount: number;
+  visibility: boolean;
+};
 
 export interface LawnStyleProps {
   lawnHeight: number;
@@ -58,6 +65,11 @@ export interface PushEventType {
   commits: Array<unknown>;
 }
 
+// Color Property Type
+export type ColorIdx = 0 | 1 | 2 | 3 | 4;
+
+export type ColorType = "GREEN" | "BLUE";
+
 // API Feature Types
 export interface CommitRowType {
   date: Date;
@@ -68,8 +80,4 @@ export interface YMD {
   year: number;
   month: number;
   date: number;
-}
-
-export class CommitRow implements CommitRowType {
-  constructor(public date: Date, public count: number) {}
 }
