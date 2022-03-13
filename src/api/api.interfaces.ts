@@ -8,6 +8,7 @@ export interface DataRefinerAbstract {
   getCommitHistory: () => Promise<{
     commitRows: CommitRowType[];
     maxCount: number;
+    totalCount: number;
   }>;
   // getStartDate: () => Date;
 }
