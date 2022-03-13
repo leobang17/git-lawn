@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { CommitRow, ContributionBoxProps } from "../../../@types/dataTypes";
+import { ContributionBoxProps } from "../../../@types";
 import { CONTRIBUTION_FONT_SIZE, MonthMapper } from "../../../@types/static";
 import {
   CONTRIBUTION_BOX_COLOR,

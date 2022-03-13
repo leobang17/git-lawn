@@ -20,7 +20,7 @@ export interface LawnStyleProps {
   lawnWidth: number;
 }
 
-export interface ContributionBoxProps extends CommitRow {
+export interface ContributionBoxProps extends CommitRowType {
   span: number;
 }
 
