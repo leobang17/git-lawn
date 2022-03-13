@@ -1,5 +1,6 @@
 import { Dispatch, SetStateAction, useEffect } from "react";
 import { CommitRowType } from "../../../@types";
+import { UnvisibleCommitRow } from "../../../@types/domain";
 import APIConfig from "../../../api/APIConfig";
 
 export const lawnSizeCalculator = (grassSpan: number) => {
@@ -17,8 +18,24 @@ export const fetchData = async (
   const dataRefiner = apiConfig.apiDataRefiner();
 
   const { commitRows, maxCount } = await dataRefiner.getCommitHistory();
+
+  const daysToFill = getDaysToFill(commitRows);
+
+  fillUnvisibleGrass(commitRows, daysToFill);
+  console.log(commitRows);
   commitHisrotySetter(commitRows);
   maxCountSetter(maxCount);
+};
+
+const getDaysToFill = (targetArr: CommitRowType[]) => {
+  return targetArr[0].date.getDay();
+};
+
+const fillUnvisibleGrass = (targetArr: CommitRowType[], daysToFill: number) => {
+  for (let i = 0; i < daysToFill; i++) {
+    const unvisibleBox = new UnvisibleCommitRow(new Date(), 0, false);
+    targetArr.unshift(unvisibleBox);
+  }
 };
 
 export const colorDistributor = (maxCount: number, count: number) => {
@@ -34,4 +51,19 @@ export const colorDistributor = (maxCount: number, count: number) => {
   } else if (quarter * 3 < count && count <= maxCount) {
     return 4;
   }
+};
+
+export const getStartDay = (
+  commitHistory: CommitRowType[],
+  startDaySetter: Dispatch<SetStateAction<number>>
+) => {
+  if (commitHistory.length > 0) {
+    startDaySetter(commitHistory[0].date.getDay());
+  }
+};
+
+export const isVisible = (
+  row: CommitRowType | UnvisibleCommitRow
+): row is UnvisibleCommitRow => {
+  return (<UnvisibleCommitRow>row).visibility === undefined;
 };

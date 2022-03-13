@@ -8,11 +8,22 @@ const Box = styled.div<GrassProps>`
   margin: ${(props) => props.grassSpan * 0.1}px;
   background-color: ${(props) => props.color};
   border-radius: ${(props) => props.grassSpan * 0.15}px;
+  visibility: ${(props) => (props.visibility ? "visible" : "hidden")};
 `;
 
-const Grass: React.FC<GrassProps> = ({ grassSpan, color, commitCount }) => {
+const Grass: React.FC<GrassProps> = ({
+  grassSpan,
+  color,
+  commitCount,
+  visibility,
+}) => {
   return (
-    <Box grassSpan={grassSpan} color={color} commitCount={commitCount}>
+    <Box
+      grassSpan={grassSpan}
+      color={color}
+      commitCount={commitCount}
+      visibility={visibility}
+    >
       {/* {commitCount} */}
     </Box>
   );

@@ -12,6 +12,7 @@ export type GrassProps = {
   grassSpan: number;
   color: string;
   commitCount: number;
+  visibility: boolean;
 };
 
 export interface LawnStyleProps {
@@ -75,8 +76,4 @@ export interface YMD {
   year: number;
   month: number;
   date: number;
-}
-
-export class CommitRow implements CommitRowType {
-  constructor(public date: Date, public count: number) {}
 }
