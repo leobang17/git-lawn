@@ -72,7 +72,7 @@ export type ColorType = "GREEN" | "BLUE";
 
 // API Feature Types
 export interface CommitRowType {
-  date: Date;
+  readonly date: Date;
   count: number;
 }
 
