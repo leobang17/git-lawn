@@ -1,4 +1,5 @@
 import { CommitRowType, EventType, PushEventType } from "../@types";
+import { CommitRow } from "../@types/domain";
 
 import {
   DataGetterAbstract,
@@ -16,13 +17,13 @@ export default class APIDataRefiner implements DataRefinerAbstract {
     return eventRows.filter((event) => event.type === "PushEvent");
   }
 
-  private refineCommitData(pushEventRows: EventType[]) {
-    const commitHistory: CommitRowType[] = [] as CommitRowType[];
-    const today = this.dateService.getCurrentDate();
-    let tempDate = this.dateService.getStartDate();
-    const reversedEventRows = pushEventRows.reverse();
+  private iterEventRows(
+    reversedEventRows: EventType[],
+    commitHistory: CommitRowType[]
+  ) {
     let maxCount = 0;
     let totalCount = 0;
+    let cursorDate = this.dateService.getStartDate();
 
     reversedEventRows.forEach((event) => {
       const payload = event.payload as PushEventType;
@@ -31,32 +32,57 @@ export default class APIDataRefiner implements DataRefinerAbstract {
 
       totalCount += commitCount;
 
-      while (tempDate.getTime() < createdDate.getTime()) {
-        commitHistory.push({ date: tempDate, count: 0 });
-        tempDate = new Date(tempDate.setDate(tempDate.getDate() + 1));
-      }
+      cursorDate = this.createEmptyRows(commitHistory, cursorDate, createdDate);
 
-      if (
-        commitHistory.length > 0 &&
-        commitHistory[commitHistory.length - 1].date.getTime() ===
-          createdDate.getTime()
-      ) {
-        commitHistory[commitHistory.length - 1].count += commitCount;
-        if (commitHistory[commitHistory.length - 1].count > maxCount) {
-          maxCount = commitHistory[commitHistory.length - 1].count;
-        }
-      } else {
-        commitHistory.push({ date: createdDate, count: commitCount });
-        if (commitHistory[commitHistory.length - 1].count > maxCount) {
-          maxCount = commitHistory[commitHistory.length - 1].count;
-        }
+      commitHistory[commitHistory.length - 1].count += commitCount;
+      if (commitHistory[commitHistory.length - 1].count > maxCount) {
+        maxCount = commitHistory[commitHistory.length - 1].count;
       }
     });
 
-    while (tempDate.getTime() < today.getTime()) {
-      commitHistory.push({ date: tempDate, count: 0 });
-      tempDate = new Date(tempDate.setDate(tempDate.getDate() + 1));
+    return { cursorDate, maxCount, totalCount };
+  }
+
+  private createEmptyRows(
+    commitHistory: CommitRowType[],
+    cursorDate: Date,
+    createdDate: Date
+  ) {
+    while (cursorDate.getTime() < createdDate.getTime()) {
+      commitHistory.push(new CommitRow(cursorDate, 0));
+      cursorDate = new Date(cursorDate.setDate(cursorDate.getDate() + 1));
     }
+
+    return cursorDate;
+  }
+
+  private postFill(commitHistory: CommitRowType[], lastDate: Date) {
+    const today = this.dateService.getCurrentDate();
+
+    while (lastDate.getTime() < today.getTime()) {
+      commitHistory.push(new CommitRow(lastDate, 0));
+      lastDate = new Date(lastDate.setDate(lastDate.getDate() + 1));
+    }
+  }
+
+  private addInitialRow(commitHistory: CommitRowType[], startDate: Date) {
+    commitHistory.push(new CommitRow(startDate, 0));
+  }
+
+  private refineCommitData(pushEventRows: EventType[]) {
+    const commitHistory: CommitRowType[] = [] as CommitRowType[];
+    let tempDate = this.dateService.getStartDate();
+
+    this.addInitialRow(commitHistory, tempDate);
+
+    const reversedEventRows = pushEventRows.reverse();
+
+    const { cursorDate, maxCount, totalCount } = this.iterEventRows(
+      reversedEventRows,
+      commitHistory
+    );
+
+    this.postFill(commitHistory, cursorDate);
 
     return { commitRows: commitHistory, maxCount, totalCount };
   }
@@ -66,6 +92,7 @@ export default class APIDataRefiner implements DataRefinerAbstract {
     const pushEventRows = this.extractPushEvent(eventRows);
     const { commitRows, maxCount, totalCount } =
       this.refineCommitData(pushEventRows);
+
     return { commitRows, maxCount, totalCount };
   }
 }
