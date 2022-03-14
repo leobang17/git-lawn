@@ -30,15 +30,19 @@ export default class APIDataRefiner implements DataRefinerAbstract {
       const commitCount = payload.commits.length;
       const createdDate = this.dateService.toDate(event.created_at);
 
-      totalCount += commitCount;
-
       cursorDate = this.createEmptyRows(commitHistory, cursorDate, createdDate);
 
-      commitHistory[commitHistory.length - 1].count += commitCount;
-      maxCount = Math.max(
-        maxCount,
-        commitHistory[commitHistory.length - 1].count
-      );
+      if (
+        createdDate.getTime() ===
+        commitHistory[commitHistory.length - 1].date.getTime()
+      ) {
+        commitHistory[commitHistory.length - 1].count += commitCount;
+        totalCount += commitCount;
+        maxCount = Math.max(
+          maxCount,
+          commitHistory[commitHistory.length - 1].count
+        );
+      }
     });
 
     return { cursorDate, maxCount, totalCount };
@@ -49,12 +53,13 @@ export default class APIDataRefiner implements DataRefinerAbstract {
     cursorDate: Date,
     createdDate: Date
   ) {
-    while (cursorDate.getTime() < createdDate.getTime()) {
-      commitHistory.push(new CommitRow(cursorDate, 0));
-      cursorDate = new Date(cursorDate.setDate(cursorDate.getDate() + 1));
+    let copyDate = new Date(cursorDate);
+    while (copyDate.getTime() < createdDate.getTime()) {
+      commitHistory.push(new CommitRow(copyDate, 0));
+      copyDate = new Date(copyDate.setDate(copyDate.getDate() + 1));
     }
 
-    return cursorDate;
+    return copyDate;
   }
 
   private postFill(commitHistory: CommitRowType[], lastDate: Date) {
