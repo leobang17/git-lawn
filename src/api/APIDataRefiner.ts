@@ -19,11 +19,11 @@ export default class APIDataRefiner implements DataRefinerAbstract {
 
   private iterEventRows(
     reversedEventRows: EventType[],
-    commitHistory: CommitRowType[]
+    commitHistory: CommitRowType[],
+    cursorDate: Date
   ) {
     let maxCount = 0;
     let totalCount = 0;
-    let cursorDate = this.dateService.getStartDate();
 
     reversedEventRows.forEach((event) => {
       const payload = event.payload as PushEventType;
@@ -35,9 +35,10 @@ export default class APIDataRefiner implements DataRefinerAbstract {
       cursorDate = this.createEmptyRows(commitHistory, cursorDate, createdDate);
 
       commitHistory[commitHistory.length - 1].count += commitCount;
-      if (commitHistory[commitHistory.length - 1].count > maxCount) {
-        maxCount = commitHistory[commitHistory.length - 1].count;
-      }
+      maxCount = Math.max(
+        maxCount,
+        commitHistory[commitHistory.length - 1].count
+      );
     });
 
     return { cursorDate, maxCount, totalCount };
@@ -71,15 +72,16 @@ export default class APIDataRefiner implements DataRefinerAbstract {
 
   private refineCommitData(pushEventRows: EventType[]) {
     const commitHistory: CommitRowType[] = [] as CommitRowType[];
-    let tempDate = this.dateService.getStartDate();
+    const startDate = this.dateService.getStartDate();
 
-    this.addInitialRow(commitHistory, tempDate);
+    this.addInitialRow(commitHistory, startDate);
 
     const reversedEventRows = pushEventRows.reverse();
 
     const { cursorDate, maxCount, totalCount } = this.iterEventRows(
       reversedEventRows,
-      commitHistory
+      commitHistory,
+      startDate
     );
 
     this.postFill(commitHistory, cursorDate);
