@@ -1,12 +1,17 @@
+import { type } from "os";
+
 // Component Property Type
-export interface GitLawnProps {
-  username: string;
+export interface LawnProps {
   grassSpan?: number;
   color?: ColorType;
   month?: number;
 }
 
-export type LawnProps = Required<GitLawnProps>;
+export interface GitLawnProps extends LawnProps {
+  username: string;
+}
+
+export type LawnPropsRequired = Required<LawnProps>;
 
 export type GrassProps = {
   grassSpan: number;

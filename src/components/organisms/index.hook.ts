@@ -1,8 +1,6 @@
-import { GitLawnProps, LawnProps } from "../../@types";
+import { LawnProps, LawnPropsRequired } from "../../@types";
 
-export const defaultConfig = (
-  params: Pick<GitLawnProps, "color" | "grassSpan" | "month">
-): Required<Pick<GitLawnProps, "color" | "grassSpan" | "month">> => {
+export const defaultConfig = (params: LawnProps): LawnPropsRequired => {
   let { color, grassSpan, month } = params;
   if (!color) {
     color = "GREEN";
