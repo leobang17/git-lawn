@@ -1,5 +1,6 @@
 import React from "react";
-import { GitLawnProps, LawnProps } from "../../@types";
+import { GitLawnProps } from "../../@types";
+import { UsernameContext } from "../../globalContext";
 import Lawn from "../molecules/lawn";
 import { defaultConfig } from "./index.hook";
 
@@ -20,12 +21,9 @@ const GitLawn: React.FC<GitLawnProps> = ({
   });
 
   return (
-    <Lawn
-      username={username}
-      grassSpan={_grassSpan}
-      color={_color}
-      month={_month}
-    />
+    <UsernameContext.Provider value={username}>
+      <Lawn grassSpan={_grassSpan} color={_color} month={_month} />
+    </UsernameContext.Provider>
   );
 };
 

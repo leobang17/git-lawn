@@ -23,9 +23,7 @@ const Grass: React.FC<GrassProps> = ({
       color={color}
       commitCount={commitCount}
       visibility={visibility}
-    >
-      {/* {commitCount} */}
-    </Box>
+    ></Box>
   );
 };
 

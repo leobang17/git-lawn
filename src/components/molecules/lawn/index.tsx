@@ -1,20 +1,25 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 
-import { ColorIdx, CommitRowType, LawnProps } from "../../../@types";
+import {
+  ColorIdx,
+  CommitRowType,
+  LawnProps,
+  LawnPropsRequired,
+} from "../../../@types";
 import { GRASS_COLOR } from "../../../@types/static";
+import { UsernameContext } from "../../../globalContext";
 import Grass from "../../atoms/grass";
 
 import {
   colorDistributor,
   fetchData,
-  getStartDay,
   isVisible,
   lawnSizeCalculator,
   lawnWidthCountCalculator,
 } from "./lawn.hooks";
 import { LawnBox } from "./lawn.style";
 
-const Lawn: React.FC<LawnProps> = ({ grassSpan, month, color }) => {
+const Lawn: React.FC<LawnPropsRequired> = ({ grassSpan, month, color }) => {
   // States
   const lawnSize = lawnSizeCalculator(grassSpan);
   const [lawnHeight, setLawnHeight] = useState(lawnSize.lawnHeight);
@@ -23,10 +28,11 @@ const Lawn: React.FC<LawnProps> = ({ grassSpan, month, color }) => {
   const [commitHistory, setCommitHistory] = useState<CommitRowType[]>(
     [] as CommitRowType[]
   );
+  const username = useContext(UsernameContext) as string;
 
   // Effects
   useEffect(() => {
-    fetchData(setCommitHistory, setMaxCount, "leobang17");
+    fetchData(setCommitHistory, setMaxCount, username);
   }, []);
 
   useEffect(() => {
