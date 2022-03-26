@@ -1,8 +1,9 @@
-import React from "react";
-import { GitLawnProps } from "../../@types";
-import { UsernameContext } from "../../globalContext";
+import React, { useEffect, useState } from "react";
+import { CommitHistoryType, GitLawnProps } from "../../@types";
+import APIConfig from "../../api/APIConfig";
+import { CommitHistoryContext, UsernameContext } from "../../globalContext";
 import Lawn from "../molecules/lawn";
-import { defaultConfig } from "./index.hook";
+import { defaultConfig, fetchData } from "./index.hook";
 
 const GitLawn: React.FC<GitLawnProps> = ({
   username,
@@ -10,6 +11,7 @@ const GitLawn: React.FC<GitLawnProps> = ({
   color,
   month,
 }) => {
+  const [commitHistory, setCommitHistory] = useState<CommitHistoryType>();
   const {
     grassSpan: _grassSpan,
     color: _color,
@@ -20,9 +22,15 @@ const GitLawn: React.FC<GitLawnProps> = ({
     month,
   });
 
+  useEffect(() => {
+    fetchData(username, setCommitHistory);
+  }, []);
+
   return (
     <UsernameContext.Provider value={username}>
-      <Lawn grassSpan={_grassSpan} color={_color} month={_month} />
+      <CommitHistoryContext.Provider value={commitHistory as CommitHistoryType}>
+        <Lawn grassSpan={_grassSpan} color={_color} month={_month} />
+      </CommitHistoryContext.Provider>
     </UsernameContext.Provider>
   );
 };

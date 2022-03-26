@@ -2,12 +2,13 @@ import React, { useContext, useEffect, useState } from "react";
 
 import {
   ColorIdx,
+  CommitHistoryType,
   CommitRowType,
   LawnProps,
   LawnPropsRequired,
 } from "../../../@types";
 import { GRASS_COLOR } from "../../../@types/static";
-import { UsernameContext } from "../../../globalContext";
+import { CommitHistoryContext, UsernameContext } from "../../../globalContext";
 import Grass from "../../atoms/grass";
 
 import {
@@ -29,6 +30,7 @@ const Lawn: React.FC<LawnPropsRequired> = ({ grassSpan, month, color }) => {
     [] as CommitRowType[]
   );
   const username = useContext(UsernameContext) as string;
+  // const { commitRows, maxCount } = useContext(CommitHistoryContext) as CommitHistoryType;
 
   // Effects
   useEffect(() => {
