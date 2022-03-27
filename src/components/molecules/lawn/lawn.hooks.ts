@@ -1,7 +1,6 @@
 import { Dispatch, SetStateAction } from "react";
 import { CommitRowType } from "../../../@types";
-import { CommitRow, UnvisibleCommitRow } from "../../../@types/domain";
-import APIConfig from "../../../api/APIConfig";
+import { UnvisibleCommitRow } from "../../../@types/domain";
 
 export const lawnSizeCalculator = (
   grassSpan: number,
@@ -10,24 +9,6 @@ export const lawnSizeCalculator = (
   const lawnHeight = grassSpan * 7;
   const lawnWidth = grassSpan * lawnBoxWidth;
   return { lawnHeight, lawnWidth };
-};
-
-export const fetchData = async (
-  commitHisrotySetter: Dispatch<SetStateAction<CommitRowType[]>>,
-  maxCountSetter: Dispatch<SetStateAction<number>>,
-  username: string
-) => {
-  const apiConfig = new APIConfig(username);
-  const dataRefiner = apiConfig.apiDataRefiner();
-
-  const { commitRows, maxCount } = await dataRefiner.getCommitHistory();
-
-  const daysToFill = getDaysToFill(commitRows);
-
-  getUnvisibleRows(daysToFill);
-
-  commitHisrotySetter(commitRows);
-  maxCountSetter(maxCount);
 };
 
 export const lawnWidthCountCalculator = (commitRows: CommitRowType[]) => {
