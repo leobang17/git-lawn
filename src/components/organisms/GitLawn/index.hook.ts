@@ -28,8 +28,7 @@ export const fetchData = async (
 ) => {
   const apiConfig = new APIConfig(username);
   const dataRefiner = apiConfig.apiDataRefiner();
-  const res = await dataRefiner.getCommitHistory();
-  setCommitHistory(() => res);
+  setCommitHistory(await dataRefiner.getCommitHistory());
 };
 
 export const isNotLoaded = (data: Object) => {

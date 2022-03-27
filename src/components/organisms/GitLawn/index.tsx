@@ -4,7 +4,7 @@ import APIConfig from "../../../api/APIConfig";
 import { CommitHistoryContext, UsernameContext } from "../../../utils/AppState";
 import Lawn from "../../molecules/lawn";
 import DefaultLawn from "../DefaultLawn";
-import { defaultConfig, isNotLoaded } from "./index.hook";
+import { defaultConfig, fetchData, isNotLoaded } from "./index.hook";
 
 const GitLawn: React.FC<GitLawnProps> = ({
   username,
@@ -28,13 +28,7 @@ const GitLawn: React.FC<GitLawnProps> = ({
 
   // Effects
   useEffect(() => {
-    const fetchData = async () => {
-      const apiConfig = new APIConfig(username);
-      const dataRefiner = apiConfig.apiDataRefiner();
-      const res = await dataRefiner.getCommitHistory();
-      setCommitHistory(res);
-    };
-    fetchData();
+    fetchData(username, setCommitHistory);
   }, []);
 
   // Render
