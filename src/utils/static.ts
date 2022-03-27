@@ -18,8 +18,12 @@ export const MonthMapper = [
   "Dev",
 ];
 
+export const DayMapper = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
 export const CONTRIBUTION_BOX_COLOR = "#646E7A";
 
 export const CONTRIBUTION_FONT_COLOR = "#CFDAE4";
 
 export const CONTRIBUTION_FONT_SIZE = 12;
+
+export const BACKGROUND_COLOR = "#23272D";
