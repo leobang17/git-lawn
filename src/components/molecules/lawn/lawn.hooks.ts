@@ -1,6 +1,6 @@
 import { Dispatch, SetStateAction } from "react";
 import { CommitRowType } from "../../../@types";
-import { UnvisibleCommitRow } from "../../../@types/domain";
+import { CommitRow, UnvisibleCommitRow } from "../../../@types/domain";
 import APIConfig from "../../../api/APIConfig";
 
 export const lawnSizeCalculator = (
@@ -24,7 +24,7 @@ export const fetchData = async (
 
   const daysToFill = getDaysToFill(commitRows);
 
-  fillUnvisibleGrass(commitRows, daysToFill);
+  getUnvisibleRows(daysToFill);
 
   commitHisrotySetter(commitRows);
   maxCountSetter(maxCount);
@@ -35,15 +35,17 @@ export const lawnWidthCountCalculator = (commitRows: CommitRowType[]) => {
   return Math.ceil(rowLength / 7);
 };
 
-const getDaysToFill = (targetArr: CommitRowType[]) => {
+export const getDaysToFill = (targetArr: CommitRowType[]) => {
   return targetArr[0].date.getDay();
 };
 
-const fillUnvisibleGrass = (targetArr: CommitRowType[], daysToFill: number) => {
+export const getUnvisibleRows = (daysToFill: number) => {
+  const tempRows = [] as CommitRowType[];
   for (let i = 0; i < daysToFill; i++) {
     const unvisibleBox = new UnvisibleCommitRow(new Date(), 0, false);
-    targetArr.unshift(unvisibleBox);
+    tempRows.push(unvisibleBox);
   }
+  return tempRows;
 };
 
 export const colorDistributor = (maxCount: number, count: number) => {
