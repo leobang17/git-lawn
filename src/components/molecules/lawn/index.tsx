@@ -1,10 +1,8 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext } from "react";
 
 import {
   ColorIdx,
   CommitHistoryType,
-  CommitRowType,
-  LawnProps,
   LawnPropsRequired,
 } from "../../../@types";
 import { GRASS_COLOR } from "../../../@types/static";
@@ -13,11 +11,9 @@ import Grass from "../../atoms/grass";
 
 import {
   colorDistributor,
-  getUnvisibleRows,
-  getDaysToFill,
   isVisible,
-  lawnSizeCalculator,
-  lawnWidthCountCalculator,
+  fillUnvisibleRows,
+  lawnSizeResolver,
 } from "./lawn.hooks";
 import { LawnBox } from "./lawn.style";
 
@@ -26,12 +22,9 @@ const Lawn: React.FC<LawnPropsRequired> = ({ grassSpan, month, color }) => {
   const { commitRows, maxCount } = useContext(
     CommitHistoryContext
   ) as CommitHistoryType;
-  const daysToFill = getDaysToFill(commitRows);
-  const unvisibleRows = getUnvisibleRows(daysToFill);
-  commitRows.unshift(...unvisibleRows);
-  const lawnWidthCount = lawnWidthCountCalculator(commitRows);
-  const lawnSize = lawnSizeCalculator(grassSpan, lawnWidthCount);
-  const { lawnHeight, lawnWidth } = lawnSize;
+
+  fillUnvisibleRows(commitRows);
+  const { lawnHeight, lawnWidth } = lawnSizeResolver(grassSpan, commitRows);
 
   // Render
   return (

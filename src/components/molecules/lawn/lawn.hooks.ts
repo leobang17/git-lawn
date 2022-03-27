@@ -2,31 +2,18 @@ import { Dispatch, SetStateAction } from "react";
 import { CommitRowType } from "../../../@types";
 import { UnvisibleCommitRow } from "../../../@types/domain";
 
-export const lawnSizeCalculator = (
+export const fillUnvisibleRows = (commitRows: CommitRowType[]) => {
+  const daysToFill = getDaysToFill(commitRows);
+  const unvisibleRows = getUnvisibleRows(daysToFill);
+  commitRows.unshift(...unvisibleRows);
+};
+
+export const lawnSizeResolver = (
   grassSpan: number,
-  lawnBoxWidth: number = 14
+  commitRows: CommitRowType[]
 ) => {
-  const lawnHeight = grassSpan * 7;
-  const lawnWidth = grassSpan * lawnBoxWidth;
-  return { lawnHeight, lawnWidth };
-};
-
-export const lawnWidthCountCalculator = (commitRows: CommitRowType[]) => {
-  const rowLength = commitRows.length;
-  return Math.ceil(rowLength / 7);
-};
-
-export const getDaysToFill = (targetArr: CommitRowType[]) => {
-  return targetArr[0].date.getDay();
-};
-
-export const getUnvisibleRows = (daysToFill: number) => {
-  const tempRows = [] as CommitRowType[];
-  for (let i = 0; i < daysToFill; i++) {
-    const unvisibleBox = new UnvisibleCommitRow(new Date(), 0, false);
-    tempRows.push(unvisibleBox);
-  }
-  return tempRows;
+  const lawnWidthCount = lawnWidthCountCalculator(commitRows);
+  return lawnSizeCalculator(grassSpan, lawnWidthCount);
 };
 
 export const colorDistributor = (maxCount: number, count: number) => {
@@ -57,4 +44,32 @@ export const isVisible = (
   row: CommitRowType | UnvisibleCommitRow
 ): row is UnvisibleCommitRow => {
   return (<UnvisibleCommitRow>row).visibility === undefined;
+};
+
+const getDaysToFill = (targetArr: CommitRowType[]) => {
+  return targetArr[0].date.getDay();
+};
+
+const getUnvisibleRows = (daysToFill: number) => {
+  const tempRows = [] as CommitRowType[];
+  for (let i = 0; i < daysToFill; i++) {
+    const unvisibleRow = new UnvisibleCommitRow(new Date(), 0, false);
+    tempRows.push(unvisibleRow);
+  }
+  return tempRows;
+};
+
+const lawnWidthCountCalculator = (commitRows: CommitRowType[]) => {
+  const rowLength = commitRows.length;
+  return Math.ceil(rowLength / 7);
+};
+
+const lawnSizeCalculator = (
+  grassSpan: number,
+  // lawnBoxWidth: number = 14
+  lawnBoxWidth: number
+) => {
+  const lawnHeight = grassSpan * 7;
+  const lawnWidth = grassSpan * lawnBoxWidth;
+  return { lawnHeight, lawnWidth };
 };
