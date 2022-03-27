@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { CommitHistoryType, GitLawnProps } from "../../../@types";
-import APIConfig from "../../../api/APIConfig";
-import { CommitHistoryContext, UsernameContext } from "../../../utils/AppState";
+import { CommitHistoryContext, LawnContext } from "../../../utils/AppState";
+import DateColumn from "../../molecules/DateColumn";
 import Lawn from "../../molecules/lawn";
 import DefaultLawn from "../DefaultLawn";
 import { defaultConfig, fetchData, isNotLoaded } from "./index.hook";
+import { GitLawnDom } from "./index.style";
 
 const GitLawn: React.FC<GitLawnProps> = ({
   username,
@@ -37,11 +38,14 @@ const GitLawn: React.FC<GitLawnProps> = ({
   }
 
   return (
-    <UsernameContext.Provider value={username}>
+    <LawnContext.Provider value={defaultConfig({ grassSpan, color, month })}>
       <CommitHistoryContext.Provider value={commitHistory}>
-        <Lawn grassSpan={_grassSpan} color={_color} month={_month} />
+        <GitLawnDom>
+          <DateColumn />
+          <Lawn grassSpan={_grassSpan} color={_color} month={_month} />
+        </GitLawnDom>
       </CommitHistoryContext.Provider>
-    </UsernameContext.Provider>
+    </LawnContext.Provider>
   );
 };
 
