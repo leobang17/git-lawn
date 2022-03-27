@@ -1,4 +1,5 @@
 import { type } from "os";
+import { CommitRow } from "./domain";
 
 // Component Property Type
 export interface LawnProps {
@@ -79,6 +80,13 @@ export type ColorType = "GREEN" | "BLUE";
 export interface CommitRowType {
   readonly date: Date;
   count: number;
+}
+
+// API의 getCommitHistory의 return type
+export interface CommitHistoryType {
+  commitRows: CommitRow[];
+  maxCount: number;
+  totalCount: number;
 }
 
 export interface YMD {

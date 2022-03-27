@@ -1,51 +1,35 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext } from "react";
 
 import {
   ColorIdx,
-  CommitRowType,
-  LawnProps,
+  CommitHistoryType,
   LawnPropsRequired,
 } from "../../../@types";
 import { GRASS_COLOR } from "../../../@types/static";
-import { UsernameContext } from "../../../globalContext";
+import { CommitHistoryContext } from "../../../utils/AppState";
 import Grass from "../../atoms/grass";
 
 import {
   colorDistributor,
-  fetchData,
   isVisible,
-  lawnSizeCalculator,
-  lawnWidthCountCalculator,
+  fillUnvisibleRows,
+  lawnSizeResolver,
 } from "./lawn.hooks";
 import { LawnBox } from "./lawn.style";
 
 const Lawn: React.FC<LawnPropsRequired> = ({ grassSpan, month, color }) => {
-  // States
-  const lawnSize = lawnSizeCalculator(grassSpan);
-  const [lawnHeight, setLawnHeight] = useState(lawnSize.lawnHeight);
-  const [lawnWidth, setLawnWidth] = useState(lawnSize.lawnWidth);
-  const [maxCount, setMaxCount] = useState(0);
-  const [commitHistory, setCommitHistory] = useState<CommitRowType[]>(
-    [] as CommitRowType[]
-  );
-  const username = useContext(UsernameContext) as string;
+  // Context
+  const { commitRows, maxCount } = useContext(
+    CommitHistoryContext
+  ) as CommitHistoryType;
 
-  // Effects
-  useEffect(() => {
-    fetchData(setCommitHistory, setMaxCount, username);
-  }, []);
-
-  useEffect(() => {
-    const lawnWidthCount = lawnWidthCountCalculator(commitHistory);
-    const lawnSize = lawnSizeCalculator(grassSpan, lawnWidthCount);
-    setLawnHeight(lawnSize.lawnHeight);
-    setLawnWidth(lawnSize.lawnWidth);
-  }, [commitHistory]);
+  fillUnvisibleRows(commitRows);
+  const { lawnHeight, lawnWidth } = lawnSizeResolver(grassSpan, commitRows);
 
   // Render
   return (
     <LawnBox lawnHeight={lawnHeight} lawnWidth={lawnWidth}>
-      {commitHistory.map((iter, idx) => {
+      {commitRows.map((iter, idx) => {
         const colorIdx = colorDistributor(maxCount, iter.count) as ColorIdx;
         const visibility = isVisible(iter);
 

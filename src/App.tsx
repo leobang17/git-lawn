@@ -1,5 +1,5 @@
 import React from "react";
-import GitLawn from "./components/organisms";
+import GitLawn from "./components/organisms/GitLawn";
 
 function App() {
   return (
