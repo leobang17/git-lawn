@@ -26,4 +26,12 @@ export const CONTRIBUTION_FONT_COLOR = "#CFDAE4";
 
 export const CONTRIBUTION_FONT_SIZE = 12;
 
+
+export const DefaultConfigValue = {
+  color: "GREEN" as const,
+  grassSpan: 30,
+  month: 3,
+  darkmode: false,
+};
+
 export const BACKGROUND_COLOR = "#23272D";

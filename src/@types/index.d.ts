@@ -6,6 +6,7 @@ export interface LawnProps {
   grassSpan?: number;
   color?: ColorType;
   month?: number;
+  darkmode?: boolean;
 }
 
 export interface GitLawnProps extends LawnProps {

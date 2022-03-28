@@ -4,7 +4,8 @@ import { CommitHistoryContext, LawnContext } from "../../../utils/AppState";
 import DateColumn from "../../molecules/DateColumn";
 import Lawn from "../../molecules/lawn";
 import DefaultLawn from "../DefaultLawn";
-import { defaultConfig, fetchData, isNotLoaded } from "./index.hook";
+
+import { defaultLawnPropConfig, fetchData, isNotLoaded } from "./index.hook";
 import { GitLawnDom } from "./index.style";
 
 const GitLawn: React.FC<GitLawnProps> = ({
@@ -12,6 +13,7 @@ const GitLawn: React.FC<GitLawnProps> = ({
   grassSpan,
   color,
   month,
+  darkmode,
 }) => {
   // States
   const [commitHistory, setCommitHistory] = useState<CommitHistoryType>(
@@ -21,10 +23,12 @@ const GitLawn: React.FC<GitLawnProps> = ({
     grassSpan: _grassSpan,
     color: _color,
     month: _month,
-  } = defaultConfig({
+    darkmode: _darkmode,
+  } = defaultLawnPropConfig({
     grassSpan,
     color,
     month,
+    darkmode,
   });
 
   // Effects
@@ -38,11 +42,11 @@ const GitLawn: React.FC<GitLawnProps> = ({
   }
 
   return (
-    <LawnContext.Provider value={defaultConfig({ grassSpan, color, month })}>
+    <LawnContext.Provider value={defaultLawnPropConfig({ grassSpan, color, month, darkmode })}>
       <CommitHistoryContext.Provider value={commitHistory}>
         <GitLawnDom>
           <DateColumn />
-          <Lawn grassSpan={_grassSpan} color={_color} month={_month} />
+          <Lawn grassSpan={_grassSpan} color={_color} month={_month} darkmode = {_darkmode} />
         </GitLawnDom>
       </CommitHistoryContext.Provider>
     </LawnContext.Provider>
