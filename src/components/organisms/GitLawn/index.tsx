@@ -4,7 +4,7 @@ import APIConfig from "../../../api/APIConfig";
 import { CommitHistoryContext, UsernameContext } from "../../../utils/AppState";
 import Lawn from "../../molecules/lawn";
 import DefaultLawn from "../DefaultLawn";
-import { defaultConfig, fetchData, isNotLoaded } from "./index.hook";
+import { defaultLawnPropConfig, fetchData, isNotLoaded } from "./index.hook";
 
 const GitLawn: React.FC<GitLawnProps> = ({
   username,
@@ -22,20 +22,12 @@ const GitLawn: React.FC<GitLawnProps> = ({
     color: _color,
     month: _month,
     darkmode: _darkmode,
-  } = defaultConfig({
+  } = defaultLawnPropConfig({
     grassSpan,
     color,
     month,
     darkmode,
   });
-  console.log(
-    defaultConfig({
-      grassSpan,
-      color,
-      month,
-      darkmode,
-    })
-  );
 
   // Effects
   useEffect(() => {

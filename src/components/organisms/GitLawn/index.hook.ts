@@ -6,16 +6,11 @@ import {
   LawnPropsRequired,
 } from "../../../@types";
 import APIConfig from "../../../api/APIConfig";
+import { defaultConfig } from "../../../utils/logics";
 import { DefaultConfigValue } from "../../../utils/static";
 
-export const defaultConfig = (params: LawnProps): LawnPropsRequired => {
-  let key: keyof LawnProps;
-  for (key in params) {
-    if (!params[key]) {
-      delete params[key];
-    }
-  }
-  return { ...DefaultConfigValue, ...params };
+export const defaultLawnPropConfig = (params: LawnProps) => {
+  return defaultConfig<LawnPropsRequired>(DefaultConfigValue, params);
 };
 
 export const fetchData = async (
@@ -33,3 +28,18 @@ export const isNotLoaded = (data: Object) => {
   }
   return false;
 };
+
+export const setDefaultValue = <T>(params: T, a: Required<T>): Required<T> => {
+  return a;
+};
+export const setDefaultValueV2 = <T>(
+  params: Partial<T>,
+  defaultValue: T
+): T => {
+  return defaultValue;
+};
+
+setDefaultValue<LawnProps>(
+  { color: "BLUE" },
+  { color: "BLUE", darkmode: true, grassSpan: 30, month: 3 }
+);
