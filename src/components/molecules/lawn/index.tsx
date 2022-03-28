@@ -6,7 +6,7 @@ import {
   LawnPropsRequired,
 } from "../../../@types";
 import { GRASS_COLOR } from "../../../utils/static";
-import { CommitHistoryContext } from "../../../utils/AppState";
+import { CommitHistoryContext, LawnContext } from "../../../utils/AppState";
 import Grass from "../../atoms/grass";
 
 import {
@@ -16,16 +16,24 @@ import {
   lawnSizeResolver,
 } from "./lawn.hooks";
 import { LawnBox } from "./lawn.style";
+import { ThemeResolver } from "../../../utils/logics";
 
 const Lawn: React.FC<LawnPropsRequired> = ({ grassSpan, month, color }) => {
   // Context
   const { commitRows, maxCount } = useContext(
     CommitHistoryContext
   ) as CommitHistoryType;
+  const lawnContext = useContext(LawnContext) as LawnPropsRequired;
+
+  // Logics
+  const colorGradation = new ThemeResolver(
+    lawnContext.darkmode,
+    lawnContext.color
+  ).resolveGrassColor();
+  console.log(lawnContext.darkmode);
 
   fillUnvisibleRows(commitRows);
   const { lawnHeight, lawnWidth } = lawnSizeResolver(grassSpan, commitRows);
-  console.log(lawnHeight, lawnWidth);
 
   // Render
   return (
@@ -38,7 +46,7 @@ const Lawn: React.FC<LawnPropsRequired> = ({ grassSpan, month, color }) => {
           <Grass
             key={idx}
             grassSpan={grassSpan}
-            color={GRASS_COLOR[color][colorIdx]}
+            color={colorGradation[colorIdx]}
             commitCount={iter.count}
             visibility={visibility}
           />

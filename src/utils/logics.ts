@@ -11,7 +11,7 @@ export const defaultConfig = <T>(
       delete inputParam[key];
     }
   }
-  return { ...defaultValue, inputParam };
+  return { ...defaultValue, ...inputParam };
 };
 
 export class ThemeResolver {
