@@ -25,6 +25,7 @@ const Lawn: React.FC<LawnPropsRequired> = ({ grassSpan, month, color }) => {
 
   fillUnvisibleRows(commitRows);
   const { lawnHeight, lawnWidth } = lawnSizeResolver(grassSpan, commitRows);
+  console.log(lawnHeight, lawnWidth);
 
   // Render
   return (
