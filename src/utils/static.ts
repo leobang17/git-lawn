@@ -42,12 +42,14 @@ export const GENERAL_STYLE: GeneralStyle = {
     DARK: {
       font: "#CFDAE4",
       subFont: "#78838F",
+      contributionFont: "#CFDAE4",
       background: "#23272D",
       contributionBackground: "#646E7A",
     },
     LIGHT: {
       font: "#25292E",
       subFont: "#596069",
+      contributionFont: "#CFDAE4",
       background: "#FFFFFF",
       contributionBackground: "#25292E",
     },

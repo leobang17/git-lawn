@@ -1,6 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { CommitHistoryType, GitLawnProps } from "../../../@types";
-import { CommitHistoryContext, LawnContext } from "../../../utils/AppState";
+import {
+  CommitHistoryContext,
+  GeneralStyleContext,
+  LawnContext,
+} from "../../../utils/AppState";
+import { ThemeResolver } from "../../../utils/logics";
 import ContributionBox from "../../atoms/contributionBox";
 import DateColumn from "../../molecules/DateColumn";
 import Lawn from "../../molecules/lawn";
@@ -32,6 +37,11 @@ const GitLawn: React.FC<GitLawnProps> = ({
     darkmode,
   });
 
+  const generalStyle = new ThemeResolver(
+    _darkmode,
+    _color
+  ).resolveGeneralStyle();
+
   // Effects
   useEffect(() => {
     fetchData(username, setCommitHistory);
@@ -46,18 +56,19 @@ const GitLawn: React.FC<GitLawnProps> = ({
     <LawnContext.Provider
       value={defaultLawnPropConfig({ grassSpan, color, month, darkmode })}
     >
-      <CommitHistoryContext.Provider value={commitHistory}>
-        <GitLawnDom>
-          <DateColumn />
-          <Lawn
-            grassSpan={_grassSpan}
-            color={_color}
-            month={_month}
-            darkmode={_darkmode}
-          />
-        </GitLawnDom>
-        <ContributionBox date={new Date()} count={10} span={10} />
-      </CommitHistoryContext.Provider>
+      <GeneralStyleContext.Provider value={generalStyle}>
+        <CommitHistoryContext.Provider value={commitHistory}>
+          <GitLawnDom backgroundColor={generalStyle.background}>
+            <DateColumn />
+            <Lawn
+              grassSpan={_grassSpan}
+              color={_color}
+              month={_month}
+              darkmode={_darkmode}
+            />
+          </GitLawnDom>
+        </CommitHistoryContext.Provider>
+      </GeneralStyleContext.Provider>
     </LawnContext.Provider>
   );
 };

@@ -1,8 +1,7 @@
 import styled from "styled-components";
-import { BACKGROUND_COLOR } from "../../../utils/static";
 
-export const GitLawnDom = styled.div`
+export const GitLawnDom = styled.div<{ backgroundColor: string }>`
   display: inline-flex;
   flex-direction: row;
-  background-color: ${BACKGROUND_COLOR};
+  background-color: ${(props) => props.backgroundColor};
 `;

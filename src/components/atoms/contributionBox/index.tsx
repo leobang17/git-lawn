@@ -1,16 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
-import { ContributionBoxProps } from "../../../@types";
+import { ContributionBoxProps, GeneralColorProps } from "../../../@types";
+import { GeneralStyleContext } from "../../../utils/AppState";
 import { CONTRIBUTION_FONT_SIZE, MonthMapper } from "../../../utils/static";
-import {
-  CONTRIBUTION_BOX_COLOR,
-  CONTRIBUTION_FONT_COLOR,
-} from "../../../utils/static";
 
-const TextBox = styled.text`
+const TextBox = styled.div<{ fontColor: string; backgroundColor: string }>`
+  display: inline;
   font-size: ${CONTRIBUTION_FONT_SIZE}px;
-  background-color: ${CONTRIBUTION_BOX_COLOR};
-  color: ${CONTRIBUTION_FONT_COLOR};
+  background-color: ${(props) => props.backgroundColor};
+  color: ${(props) => props.fontColor};
   line-height: ${CONTRIBUTION_FONT_SIZE * 2.75}px;
   padding: ${CONTRIBUTION_FONT_SIZE * 0.75}px ${CONTRIBUTION_FONT_SIZE * 1.5}px
     ${CONTRIBUTION_FONT_SIZE * 0.75}px ${CONTRIBUTION_FONT_SIZE * 1.5}px;
@@ -26,12 +24,19 @@ const ContributionBox: React.FC<ContributionBoxProps> = ({
   count,
   span,
 }) => {
+  const { contributionFont, contributionBackground } = useContext(
+    GeneralStyleContext
+  ) as GeneralColorProps;
+
   const contributionMonth = MonthMapper[date.getMonth()];
   const contributionDate = date.getDate();
   const contributionYear = date.getFullYear();
 
   return (
-    <TextBox>
+    <TextBox
+      fontColor={contributionFont}
+      backgroundColor={contributionBackground}
+    >
       <BoldSpan>{count} contributions</BoldSpan> on {contributionMonth}{" "}
       {contributionDate}, {contributionYear}
     </TextBox>

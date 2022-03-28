@@ -6,7 +6,6 @@ export const LawnBox = styled.div<LawnStyleProps>`
   flex-direction: column;
   flex-wrap: wrap;
   align-content: flex-start;
-  background-color: #23272d;
   height: ${(props) => props.lawnHeight}px;
   width: ${(props) => props.lawnWidth}px;
 `;

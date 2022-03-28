@@ -1,5 +1,9 @@
 import { createContext } from "react";
-import { CommitHistoryType, LawnPropsRequired } from "../@types";
+import {
+  CommitHistoryType,
+  GeneralColorProps,
+  LawnPropsRequired,
+} from "../@types";
 
 export const UsernameContext = createContext<string | null>("");
 
@@ -9,4 +13,8 @@ export const CommitHistoryContext = createContext<
 
 export const LawnContext = createContext<LawnPropsRequired | null>(
   {} as LawnPropsRequired
+);
+
+export const GeneralStyleContext = createContext<GeneralColorProps | null>(
+  {} as GeneralColorProps
 );

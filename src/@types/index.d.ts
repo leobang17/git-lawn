@@ -82,6 +82,7 @@ export type ThemeType = "DARK" | "LIGHT";
 export type GeneralColorProps = {
   font: string;
   subFont: string;
+  contributionFont: string;
   background: string;
   contributionBackground: string;
 };

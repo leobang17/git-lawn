@@ -5,7 +5,6 @@ import {
   CommitHistoryType,
   LawnPropsRequired,
 } from "../../../@types";
-import { GRASS_COLOR } from "../../../utils/static";
 import { CommitHistoryContext, LawnContext } from "../../../utils/AppState";
 import Grass from "../../atoms/grass";
 
@@ -30,7 +29,6 @@ const Lawn: React.FC<LawnPropsRequired> = ({ grassSpan, month, color }) => {
     lawnContext.darkmode,
     lawnContext.color
   ).resolveGrassColor();
-  console.log(lawnContext.darkmode);
 
   fillUnvisibleRows(commitRows);
   const { lawnHeight, lawnWidth } = lawnSizeResolver(grassSpan, commitRows);

@@ -1,18 +1,19 @@
 import React, { useContext } from "react";
-import { LawnPropsRequired } from "../../../@types";
+import { GeneralColorProps, LawnPropsRequired } from "../../../@types";
 import { DayMapper } from "../../../utils/static";
-import { LawnContext } from "../../../utils/AppState";
+import { GeneralStyleContext, LawnContext } from "../../../utils/AppState";
 import { DateColumnDom, DateDom } from "./index.style";
 
 const DateColumn = () => {
   // Context
   const { grassSpan } = useContext(LawnContext) as LawnPropsRequired;
+  const { font } = useContext(GeneralStyleContext) as GeneralColorProps;
 
   return (
     <DateColumnDom>
       {DayMapper.map((day, idx) => {
         return (
-          <DateDom height={grassSpan} key={idx}>
+          <DateDom height={grassSpan} fontColor={font} key={idx}>
             {day}
           </DateDom>
         );
