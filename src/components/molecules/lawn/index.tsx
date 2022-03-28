@@ -29,13 +29,13 @@ const Lawn: React.FC = () => {
   // Logics
   const colorGradation = new ThemeResolver(darkmode, color).resolveGrassColor();
 
-  fillUnvisibleRows(commitRows);
-  const { lawnHeight, lawnWidth } = lawnSizeResolver(grassSpan, commitRows);
+  const filledRows = fillUnvisibleRows(commitRows);
+  const { lawnHeight, lawnWidth } = lawnSizeResolver(grassSpan, filledRows);
 
   // Render
   return (
     <LawnBox lawnHeight={lawnHeight} lawnWidth={lawnWidth}>
-      {commitRows.map((iter, idx) => {
+      {filledRows.map((iter, idx) => {
         const colorIdx = colorDistributor(maxCount, iter.count) as ColorIdx;
         const visibility = isVisible(iter);
 

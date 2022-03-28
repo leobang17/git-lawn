@@ -5,7 +5,8 @@ import { UnvisibleCommitRow } from "../../../@types/domain";
 export const fillUnvisibleRows = (commitRows: CommitRowType[]) => {
   const daysToFill = getDaysToFill(commitRows);
   const unvisibleRows = getUnvisibleRows(daysToFill);
-  commitRows.unshift(...unvisibleRows);
+  // commitRows.unshift(...unvisibleRows);
+  return [...unvisibleRows, ...commitRows];
 };
 
 export const lawnSizeResolver = (
@@ -51,12 +52,12 @@ const getDaysToFill = (targetArr: CommitRowType[]) => {
 };
 
 const getUnvisibleRows = (daysToFill: number) => {
-  const tempRows = [] as CommitRowType[];
+  const unvisibleRows = [] as CommitRowType[];
   for (let i = 0; i < daysToFill; i++) {
     const unvisibleRow = new UnvisibleCommitRow(new Date(), 0, false);
-    tempRows.push(unvisibleRow);
+    unvisibleRows.push(unvisibleRow);
   }
-  return tempRows;
+  return unvisibleRows;
 };
 
 const lawnWidthCountCalculator = (commitRows: CommitRowType[]) => {
@@ -64,11 +65,7 @@ const lawnWidthCountCalculator = (commitRows: CommitRowType[]) => {
   return Math.ceil(rowLength / 7);
 };
 
-const lawnSizeCalculator = (
-  grassSpan: number,
-  // lawnBoxWidth: number = 14
-  lawnBoxWidth: number
-) => {
+const lawnSizeCalculator = (grassSpan: number, lawnBoxWidth: number) => {
   const lawnHeight = grassSpan * 7;
   const lawnWidth = grassSpan * lawnBoxWidth;
   return { lawnHeight, lawnWidth };
