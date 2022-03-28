@@ -11,6 +11,7 @@ const GitLawn: React.FC<GitLawnProps> = ({
   grassSpan,
   color,
   month,
+  darkmode,
 }) => {
   // States
   const [commitHistory, setCommitHistory] = useState<CommitHistoryType>(
@@ -20,11 +21,21 @@ const GitLawn: React.FC<GitLawnProps> = ({
     grassSpan: _grassSpan,
     color: _color,
     month: _month,
+    darkmode: _darkmode,
   } = defaultConfig({
     grassSpan,
     color,
     month,
+    darkmode,
   });
+  console.log(
+    defaultConfig({
+      grassSpan,
+      color,
+      month,
+      darkmode,
+    })
+  );
 
   // Effects
   useEffect(() => {
@@ -39,7 +50,12 @@ const GitLawn: React.FC<GitLawnProps> = ({
   return (
     <UsernameContext.Provider value={username}>
       <CommitHistoryContext.Provider value={commitHistory}>
-        <Lawn grassSpan={_grassSpan} color={_color} month={_month} />
+        <Lawn
+          grassSpan={_grassSpan}
+          color={_color}
+          month={_month}
+          darkmode={_darkmode}
+        />
       </CommitHistoryContext.Provider>
     </UsernameContext.Provider>
   );

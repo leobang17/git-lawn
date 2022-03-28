@@ -1,11 +1,11 @@
 import React from "react";
 import styled from "styled-components";
 import { ContributionBoxProps } from "../../../@types";
-import { CONTRIBUTION_FONT_SIZE, MonthMapper } from "../../../@types/static";
+import { CONTRIBUTION_FONT_SIZE, MonthMapper } from "../../../utils/static";
 import {
   CONTRIBUTION_BOX_COLOR,
   CONTRIBUTION_FONT_COLOR,
-} from "../../../@types/static";
+} from "../../../utils/static";
 
 const TextBox = styled.text`
   font-size: ${CONTRIBUTION_FONT_SIZE}px;

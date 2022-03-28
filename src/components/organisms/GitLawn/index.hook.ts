@@ -6,20 +6,16 @@ import {
   LawnPropsRequired,
 } from "../../../@types";
 import APIConfig from "../../../api/APIConfig";
+import { DefaultConfigValue } from "../../../utils/static";
 
 export const defaultConfig = (params: LawnProps): LawnPropsRequired => {
-  let { color, grassSpan, month } = params;
-  if (!color) {
-    color = "GREEN";
+  let key: keyof LawnProps;
+  for (key in params) {
+    if (!params[key]) {
+      delete params[key];
+    }
   }
-  if (!grassSpan) {
-    grassSpan = 30;
-  }
-  if (!month) {
-    month = 3;
-  }
-
-  return { color, grassSpan, month };
+  return { ...DefaultConfigValue, ...params };
 };
 
 export const fetchData = async (
