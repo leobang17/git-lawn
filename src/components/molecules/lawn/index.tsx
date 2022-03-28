@@ -5,7 +5,7 @@ import {
   CommitHistoryType,
   LawnPropsRequired,
 } from "../../../@types";
-import { GRASS_COLOR } from "../../../@types/static";
+import { GRASS_COLOR } from "../../../utils/static";
 import { CommitHistoryContext } from "../../../utils/AppState";
 import Grass from "../../atoms/grass";
 
