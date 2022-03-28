@@ -60,12 +60,7 @@ const GitLawn: React.FC<GitLawnProps> = ({
         <CommitHistoryContext.Provider value={commitHistory}>
           <GitLawnDom backgroundColor={generalStyle.background}>
             <DateColumn />
-            <Lawn
-              grassSpan={_grassSpan}
-              color={_color}
-              month={_month}
-              darkmode={_darkmode}
-            />
+            <Lawn />
           </GitLawnDom>
         </CommitHistoryContext.Provider>
       </GeneralStyleContext.Provider>

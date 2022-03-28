@@ -17,18 +17,17 @@ import {
 import { LawnBox } from "./lawn.style";
 import { ThemeResolver } from "../../../utils/logics";
 
-const Lawn: React.FC<LawnPropsRequired> = ({ grassSpan, month, color }) => {
+const Lawn: React.FC = () => {
   // Context
   const { commitRows, maxCount } = useContext(
     CommitHistoryContext
   ) as CommitHistoryType;
-  const lawnContext = useContext(LawnContext) as LawnPropsRequired;
+  const { darkmode, color, grassSpan } = useContext(
+    LawnContext
+  ) as LawnPropsRequired;
 
   // Logics
-  const colorGradation = new ThemeResolver(
-    lawnContext.darkmode,
-    lawnContext.color
-  ).resolveGrassColor();
+  const colorGradation = new ThemeResolver(darkmode, color).resolveGrassColor();
 
   fillUnvisibleRows(commitRows);
   const { lawnHeight, lawnWidth } = lawnSizeResolver(grassSpan, commitRows);
@@ -43,7 +42,6 @@ const Lawn: React.FC<LawnPropsRequired> = ({ grassSpan, month, color }) => {
         return (
           <Grass
             key={idx}
-            grassSpan={grassSpan}
             color={colorGradation[colorIdx]}
             commitCount={iter.count}
             visibility={visibility}
