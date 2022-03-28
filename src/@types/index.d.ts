@@ -77,6 +77,34 @@ export type ColorIdx = 0 | 1 | 2 | 3 | 4;
 
 export type ColorType = "GREEN" | "BLUE";
 
+export type ThemeType = "DARK" | "LIGHT";
+
+export type GeneralColorProps = {
+  font: string;
+  subFont: string;
+  background: string;
+  contributionBackground: string;
+};
+
+export type ThemeColor = { [theme in ThemeType]: GeneralColorProps };
+
+export type GeneralStyle = {
+  theme: ThemeColor;
+  font?: Object;
+};
+
+export type GrassColor = {
+  theme: ThemeGrassColor;
+};
+
+export type ThemeGrassColor = {
+  [theme in ThemeType]: GrassGradation;
+};
+
+export type GrassGradation = {
+  [color in ColorType]: string[];
+};
+
 // API Feature Types
 export interface CommitRowType {
   readonly date: Date;
