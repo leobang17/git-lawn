@@ -28,18 +28,3 @@ export const isNotLoaded = (data: Object) => {
   }
   return false;
 };
-
-export const setDefaultValue = <T>(params: T, a: Required<T>): Required<T> => {
-  return a;
-};
-export const setDefaultValueV2 = <T>(
-  params: Partial<T>,
-  defaultValue: T
-): T => {
-  return defaultValue;
-};
-
-setDefaultValue<LawnProps>(
-  { color: "BLUE" },
-  { color: "BLUE", darkmode: true, grassSpan: 30, month: 3 }
-);

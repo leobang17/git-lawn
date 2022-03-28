@@ -1,4 +1,4 @@
-import { ColorType, GeneralColorProps, ThemeType } from "../@types";
+import { ColorType, ThemeType } from "../@types";
 import { GENERAL_STYLE, GRASS_COLORS } from "./static";
 
 export const defaultConfig = <T>(
