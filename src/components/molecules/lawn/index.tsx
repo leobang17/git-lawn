@@ -43,6 +43,7 @@ const Lawn: React.FC = () => {
           <Grass
             key={idx}
             color={colorGradation[colorIdx]}
+            date={iter.date}
             commitCount={iter.count}
             visibility={visibility}
           />
