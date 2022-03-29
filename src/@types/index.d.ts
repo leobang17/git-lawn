@@ -17,8 +17,9 @@ export type LawnPropsRequired = Required<LawnProps>;
 
 export type GrassProps = {
   grassSpan: number;
-  color: string;
+  date: Date;
   commitCount: number;
+  color: string;
   visibility: boolean;
 };
 
@@ -27,9 +28,7 @@ export interface LawnStyleProps {
   lawnWidth: number;
 }
 
-export interface ContributionBoxProps extends CommitRowType {
-  span: number;
-}
+export interface ContributionBoxProps extends CommitRowType {}
 
 // Github API Types
 export interface PublicEventRequirements {
