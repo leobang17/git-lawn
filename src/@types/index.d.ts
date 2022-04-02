@@ -7,6 +7,7 @@ export interface LawnProps {
   color?: ColorType;
   month?: number;
   darkmode?: boolean;
+  grassShape?: GrassShape;
 }
 
 export interface GitLawnProps extends LawnProps {
@@ -71,7 +72,7 @@ export interface PushEventType {
   commits: Array<unknown>;
 }
 
-// Color Property Type
+// Style Property Type
 export type ColorIdx = 0 | 1 | 2 | 3 | 4;
 
 export type ColorType = "GREEN" | "BLUE";
@@ -85,6 +86,8 @@ export type GeneralColorProps = {
   background: string;
   contributionBackground: string;
 };
+
+export type GrassShape = "Rectangle" | "Circle";
 
 export type ThemeColor = { [theme in ThemeType]: GeneralColorProps };
 

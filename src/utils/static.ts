@@ -33,6 +33,7 @@ export const DefaultConfigValue = {
   grassSpan: 30,
   month: 3,
   darkmode: false,
+  grassShape: "Rectangle" as const,
 };
 
 export const BACKGROUND_COLOR = "#23272D";

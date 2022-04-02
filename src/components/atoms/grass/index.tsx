@@ -1,5 +1,4 @@
 import React, { useContext, useEffect, useState } from "react";
-import styled from "styled-components";
 import {
   GeneralColorProps,
   GrassProps,
@@ -7,22 +6,15 @@ import {
 } from "../../../@types";
 import { GeneralStyleContext, LawnContext } from "../../../utils/AppState";
 import Contribution from "../contribution";
-
-const GrassDom = styled.div<Pick<GrassProps, "grassSpan" | "visibility">>`
-  position: relative;
-  height: ${(props) => props.grassSpan * 0.8}px;
-  width: ${(props) => props.grassSpan * 0.8}px;
-  margin: ${(props) => props.grassSpan * 0.1}px;
-  background-color: ${(props) => props.color};
-  border-radius: ${(props) => props.grassSpan * 0.15}px;
-  visibility: ${(props) => (props.visibility ? "visible" : "hidden")};
-`;
+import { GrassDom } from "./index.style";
 
 const Grass: React.FC<
   Pick<GrassProps, "date" | "commitCount" | "visibility" | "color">
 > = ({ color, date, commitCount, visibility }) => {
   // Context
-  const { grassSpan } = useContext(LawnContext) as LawnPropsRequired;
+  const { grassSpan, grassShape } = useContext(
+    LawnContext
+  ) as LawnPropsRequired;
   const { contributionBackground } = useContext(
     GeneralStyleContext
   ) as GeneralColorProps;
@@ -48,6 +40,7 @@ const Grass: React.FC<
         grassSpan={grassSpan}
         color={color}
         visibility={visibility}
+        grassShape={grassShape}
         onMouseEnter={mouseEnterHandler}
         onMouseLeave={mouseLeaveHandler}
       >
