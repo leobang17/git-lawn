@@ -8,11 +8,12 @@ import {
 import { ThemeResolver } from "../../../utils/logics";
 import ContributionBox from "../../atoms/contributionBox";
 import DateColumn from "../../molecules/DateColumn";
+import GradientInstruction from "../../molecules/gradientInstruction";
 import Lawn from "../../molecules/lawn";
 import DefaultLawn from "../DefaultLawn";
 
 import { defaultLawnPropConfig, fetchData, isNotLoaded } from "./index.hook";
-import { GitLawnDom } from "./index.style";
+import { GitLawnBox, GitLawnDom } from "./index.style";
 
 const GitLawn: React.FC<GitLawnProps> = ({
   username,
@@ -65,10 +66,13 @@ const GitLawn: React.FC<GitLawnProps> = ({
     >
       <GeneralStyleContext.Provider value={generalStyle}>
         <CommitHistoryContext.Provider value={commitHistory}>
-          <GitLawnDom backgroundColor={generalStyle.background}>
-            <DateColumn />
-            <Lawn />
-          </GitLawnDom>
+          <GitLawnBox>
+            <GitLawnDom backgroundColor={generalStyle.background}>
+              <DateColumn />
+              <Lawn />
+            </GitLawnDom>
+            <GradientInstruction />
+          </GitLawnBox>
         </CommitHistoryContext.Provider>
       </GeneralStyleContext.Provider>
     </LawnContext.Provider>
