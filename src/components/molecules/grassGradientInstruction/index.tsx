@@ -17,7 +17,6 @@ const GrassGradientInstruction = () => {
   ) as LawnPropsRequired;
   const themeResolver = new ThemeResolver(darkmode, color);
   const grassColorGradient = themeResolver.resolveGrassColor();
-  console.log(grassColorGradient);
 
   return (
     <GrassGradientInstructionDom>
