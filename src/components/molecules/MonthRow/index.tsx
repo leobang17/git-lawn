@@ -1,20 +1,18 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
-import { HStack, VStack } from "../../../utils/Alignments";
+import { HStack } from "../../../utils/Alignments";
 import {
   CommitHistoryContext,
   GeneralStyleContext,
   LawnContext,
 } from "../../../utils/AppState";
-import { CONTRIBUTION_FONT_SIZE, MonthMapper } from "../../../utils/static";
+import { CONTRIBUTION_FONT_SIZE } from "../../../utils/static";
 import {
   CommitHistoryType,
   GeneralColorProps,
   LawnPropsRequired,
 } from "../../../@types/index";
 import { getMonthMapper } from "./index.hook";
-
-const MonthRowDom = styled(HStack)``;
 
 const BlockText = styled.div`
   visibility: hidden;
@@ -25,8 +23,8 @@ const BlockText = styled.div`
 const MonthText = styled.div<{ grassSpan: number; font: string }>`
   font-size: ${CONTRIBUTION_FONT_SIZE};
   color: ${(props) => props.font};
-  text-align: center;
   width: ${(props) => props.grassSpan}px;
+  text-align: center;
 `;
 
 const MonthRow = () => {
@@ -37,7 +35,8 @@ const MonthRow = () => {
   const monthDisplays = getMonthMapper(commitRows);
 
   return (
-    <MonthRowDom>
+    <HStack>
+      {/* Block text: just for blank space  */}
       <BlockText>Mon</BlockText>
       {monthDisplays.map((month, idx) => {
         return (
@@ -46,7 +45,7 @@ const MonthRow = () => {
           </MonthText>
         );
       })}
-    </MonthRowDom>
+    </HStack>
   );
 };
 
