@@ -18,7 +18,7 @@ const ContributionBox: React.FC<ContributionBoxProps> = ({ date, count }) => {
       fontColor={contributionFont}
       backgroundColor={contributionBackground}
     >
-      <BoldSpan>{count} contributions </BoldSpan> on{contributionMonth}{" "}
+      <BoldSpan>{count} contributions </BoldSpan> on {contributionMonth}{" "}
       {contributionDate}, {contributionYear}
     </TextBox>
   );

@@ -1,9 +1,8 @@
 import styled from "styled-components";
+import { VStack } from "../../../utils/Alignments";
 import { CONTRIBUTION_FONT_SIZE } from "../../../utils/static";
 
-export const DateColumnDom = styled.div`
-  display: flex;
-  flex-direction: column;
+export const DateColumnDom = styled(VStack)`
   margin-inline: 10px;
 `;
 

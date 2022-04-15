@@ -1,19 +1,20 @@
 import React, { useEffect, useState } from "react";
 import { CommitHistoryType, GitLawnProps } from "../../../@types";
+import { HStack } from "../../../utils/Alignments";
 import {
   CommitHistoryContext,
   GeneralStyleContext,
   LawnContext,
 } from "../../../utils/AppState";
 import { ThemeResolver } from "../../../utils/logics";
-import ContributionBox from "../../atoms/contributionBox";
 import DateColumn from "../../molecules/DateColumn";
 import GradientInstruction from "../../molecules/gradientInstruction";
 import Lawn from "../../molecules/lawn";
+import MonthRow from "../../molecules/MonthRow";
 import DefaultLawn from "../DefaultLawn";
 
 import { defaultLawnPropConfig, fetchData, isNotLoaded } from "./index.hook";
-import { GitLawnBox, GitLawnDom } from "./index.style";
+import { VSTACK__INLINEFLEX } from "./index.style";
 
 const GitLawn: React.FC<GitLawnProps> = ({
   username,
@@ -66,13 +67,14 @@ const GitLawn: React.FC<GitLawnProps> = ({
     >
       <GeneralStyleContext.Provider value={generalStyle}>
         <CommitHistoryContext.Provider value={commitHistory}>
-          <GitLawnBox>
-            <GitLawnDom backgroundColor={generalStyle.background}>
+          <VSTACK__INLINEFLEX backgroundColor={generalStyle.background}>
+            <MonthRow />
+            <HStack>
               <DateColumn />
               <Lawn />
-            </GitLawnDom>
+            </HStack>
             <GradientInstruction />
-          </GitLawnBox>
+          </VSTACK__INLINEFLEX>
         </CommitHistoryContext.Provider>
       </GeneralStyleContext.Provider>
     </LawnContext.Provider>
