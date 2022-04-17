@@ -1,10 +1,6 @@
 import styled from "styled-components";
 import { CONTRIBUTION_FONT_SIZE } from "../../../utils/static";
 
-export const BoldSpan = styled.span`
-  font-weight: bold;
-`;
-
 export const Div = styled.div`
   display: flex;
   flex-direction: column;

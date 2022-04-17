@@ -9,3 +9,7 @@ export const VStack = styled.div`
   display: flex;
   flex-direction: column;
 `;
+
+export const BoldSpan = styled.span`
+  font-weight: bold;
+`;
