@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { VStack } from "../../../utils/Alignments";
+import { VStack } from "../../../utils/Styles";
 import { CONTRIBUTION_FONT_SIZE } from "../../../utils/static";
 
 export const DateColumnDom = styled(VStack)`

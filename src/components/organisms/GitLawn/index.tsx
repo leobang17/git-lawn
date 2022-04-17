@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { CommitHistoryType, GitLawnProps } from "../../../@types";
-import { HStack } from "../../../utils/Alignments";
+import { HStack } from "../../../utils/Styles";
 import {
   CommitHistoryContext,
   GeneralStyleContext,
   LawnContext,
 } from "../../../utils/AppState";
 import { ThemeResolver } from "../../../utils/logics";
+import ContributionCount from "../../molecules/ContributionCount";
 import DateColumn from "../../molecules/DateColumn";
 import GradientInstruction from "../../molecules/gradientInstruction";
 import Lawn from "../../molecules/lawn";
@@ -67,6 +68,7 @@ const GitLawn: React.FC<GitLawnProps> = ({
     >
       <GeneralStyleContext.Provider value={generalStyle}>
         <CommitHistoryContext.Provider value={commitHistory}>
+          <ContributionCount />
           <VSTACK__INLINEFLEX backgroundColor={generalStyle.background}>
             <MonthRow />
             <HStack>

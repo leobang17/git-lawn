@@ -1,8 +1,9 @@
 import React, { useContext } from "react";
 import { ContributionBoxProps, GeneralColorProps } from "../../../@types";
+import { BoldSpan } from "../../../utils/Styles";
 import { GeneralStyleContext } from "../../../utils/AppState";
 import { MonthMapper } from "../../../utils/static";
-import { BoldSpan, TextBox } from "./index.style";
+import { TextBox } from "./index.style";
 
 const ContributionBox: React.FC<ContributionBoxProps> = ({ date, count }) => {
   const { contributionFont, contributionBackground } = useContext(

@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
-import { HStack } from "../../../utils/Alignments";
+import { HStack } from "../../../utils/Styles";
 import {
   CommitHistoryContext,
   GeneralStyleContext,

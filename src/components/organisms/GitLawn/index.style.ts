@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { HStack, VStack } from "../../../utils/Alignments";
+import { VStack } from "../../../utils/Styles";
 import { GENERAL_STYLE } from "../../../utils/static";
 
 export const GitLawnDom = styled.div<{ backgroundColor: string }>`
