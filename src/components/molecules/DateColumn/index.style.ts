@@ -9,5 +9,5 @@ export const DateColumnDom = styled(VStack)`
 export const DateDom = styled.div<{ height: number; fontColor: string }>`
   line-height: ${(props) => props.height}px;
   color: ${(props) => props.fontColor};
-  font-size: ${CONTRIBUTION_FONT_SIZE};
+  font-size: ${CONTRIBUTION_FONT_SIZE}px;
 `;

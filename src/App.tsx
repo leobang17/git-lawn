@@ -6,7 +6,7 @@ function App() {
     <>
       <GitLawn
         username="leobang17"
-        grassSpan={30}
+        grassSpan={20}
         darkmode={false}
         grassShape="Circle"
       />

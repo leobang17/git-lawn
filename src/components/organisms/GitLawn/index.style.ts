@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { HStack, VStack } from "../../../utils/Alignments";
+import { GENERAL_STYLE } from "../../../utils/static";
 
 export const GitLawnDom = styled.div<{ backgroundColor: string }>`
   display: flex;
@@ -15,4 +16,8 @@ export const GitLawnBox = styled.div`
 export const VSTACK__INLINEFLEX = styled(VStack)<{ backgroundColor: string }>`
   display: inline-flex;
   background-color: ${(props) => props.backgroundColor};
+  border: 1px solid ${GENERAL_STYLE.theme.LIGHT.contributionFont};
+  border-radius: 20px;
+  padding-block: 15px;
+  padding-inline: 20px;
 `;
