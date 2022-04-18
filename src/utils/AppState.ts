@@ -3,7 +3,7 @@ import {
   CommitHistoryType,
   GeneralColorProps,
   LawnPropsRequired,
-} from "../@types";
+} from "../@types/index";
 
 export const UsernameContext = createContext<string | null>("");
 

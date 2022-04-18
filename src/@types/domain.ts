@@ -1,4 +1,4 @@
-import { CommitRowType } from ".";
+import { CommitRowType } from "./index";
 
 export class CommitRow implements CommitRowType {
   constructor(readonly date: Date, public count: number) {}
