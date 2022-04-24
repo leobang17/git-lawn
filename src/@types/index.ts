@@ -1,4 +1,3 @@
-import { type } from "os";
 import { CommitRow } from "./domain";
 
 // Component Property Type

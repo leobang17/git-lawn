@@ -1,4 +1,4 @@
-import { CommitHistoryType, CommitRowType, EventType } from "../@types";
+import { CommitHistoryType, EventType } from "../@types";
 
 export interface DataGetterAbstract {
   getEvents: () => Promise<EventType[]>;

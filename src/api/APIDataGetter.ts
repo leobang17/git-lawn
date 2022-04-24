@@ -1,4 +1,3 @@
-import axios, { Axios } from "axios";
 import { AxiosInstance } from "axios";
 
 import { EventType, PublicEventRequirements } from "../@types";
@@ -38,10 +37,8 @@ export default class APIDataGetter implements DataGetterAbstract {
       try {
         const query = this.queryBuilder(queryObj);
         const res = await this.fetchEvents(query);
-        console.log("요청");
         await entireEvents.push(...res);
       } catch (err) {
-        console.log("에러가 발견되었음!");
         break;
       }
       queryObj.page += 1;
