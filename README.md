@@ -1,5 +1,3 @@
-[![npm version](https://badge.fury.io/js/angular2-expandable-list.svg)](https://badge.fury.io/js/angular2-expandable-list) [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
-
 # Git-Lawn
 
 > Visualized react component of git contribution
@@ -20,6 +18,8 @@
 - Import by adding `import { GitLawn } from 'git-lawn'`.
 - Use by adding `<GitLawn />`. Use `username` prop for fetch git contribution history
 
+<br>
+
 ## Prerequisites
 
 This project requires NodeJS (version 8 or later) and NPM.
@@ -39,9 +39,14 @@ If you have used CRA creating your application, you might have `react-scripts` d
 This component requires `react-scripts` **^4.0.3** or under because of webpack issues.
 Please downgrade `react-script` if your current App is over **^5.0.0**.
 
+<br>
+<br>
+
 ## Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+
+<br>
 
 ## Installation
 
@@ -58,6 +63,8 @@ Or if you prefer using Yarn:
 ```sh
 $ yarn add git-lawn
 ```
+
+<br>
 
 ## Usage
 
@@ -77,10 +84,15 @@ function MyApp() {
 }
 ```
 
+<br>
+<br>
+
 ## User Guide
 
 **GitLawn**
 Displays git contributions of specific user.
+
+<br>
 
 **Props**
 
@@ -92,6 +104,8 @@ Displays git contributions of specific user.
 | month      | How much monthes you want to display. (For now, it is possible under 3 months)                | _Optional_ | `3`           | `number`     |
 | darkmode   | If you want to use dark theme.                                                                | _Optional_ | `false`       | `boolean`    |
 | grassShape | Shapes of each contribution of days.                                                          | _Optional_ | `"Rectangle"` | `GrassShape` |
+
+<br>
 
 **Props Type Specification**
 
