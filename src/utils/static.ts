@@ -31,7 +31,7 @@ export const CONTRIBUTION_FONT_SIZE = 12;
 export const DefaultConfigValue = {
   color: "GREEN" as const,
   grassSpan: 30,
-  month: 3,
+  month: 3 as const,
   darkmode: false,
   grassShape: "Rectangle" as const,
 };
