@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { CommitHistoryType, GitLawnProps } from "../../../@types";
-import { HStack } from "../../../utils/Styles";
+import { HStack, VStack } from "../../../utils/Styles";
 import {
   CommitHistoryContext,
   GeneralStyleContext,
@@ -68,15 +68,17 @@ const GitLawn: React.FC<GitLawnProps> = ({
     >
       <GeneralStyleContext.Provider value={generalStyle}>
         <CommitHistoryContext.Provider value={commitHistory}>
-          <ContributionCount />
-          <VSTACK__INLINEFLEX backgroundColor={generalStyle.background}>
-            <MonthRow />
-            <HStack>
-              <DateColumn />
-              <Lawn />
-            </HStack>
-            <GradientInstruction />
-          </VSTACK__INLINEFLEX>
+          <VStack>
+            <ContributionCount />
+            <VSTACK__INLINEFLEX backgroundColor={generalStyle.background}>
+              <MonthRow />
+              <HStack>
+                <DateColumn />
+                <Lawn />
+              </HStack>
+              <GradientInstruction />
+            </VSTACK__INLINEFLEX>
+          </VStack>
         </CommitHistoryContext.Provider>
       </GeneralStyleContext.Provider>
     </LawnContext.Provider>
