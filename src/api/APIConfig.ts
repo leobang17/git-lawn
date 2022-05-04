@@ -10,9 +10,11 @@ import RequestInstance from "./RequestInstance";
 
 export default class APIConfig {
   private username: string;
+  private month: number;
 
-  constructor(username: string) {
+  constructor(username: string, month: number) {
     this.username = username;
+    this.month = month;
   }
 
   private requireInstance() {
@@ -24,7 +26,7 @@ export default class APIConfig {
   }
 
   private dateService(): DateService {
-    return new DateServiceImpl();
+    return new DateServiceImpl(this.month);
   }
 
   public apiDataRefiner(): DataRefinerAbstract {

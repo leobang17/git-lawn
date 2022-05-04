@@ -48,7 +48,7 @@ const GitLawn: React.FC<GitLawnProps> = ({
 
   // Effects
   useEffect(() => {
-    fetchData(username, setCommitHistory);
+    fetchData(username, _month, setCommitHistory);
   }, []);
 
   // Render

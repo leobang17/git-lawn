@@ -15,9 +15,10 @@ export const defaultLawnPropConfig = (params: LawnProps) => {
 
 export const fetchData = async (
   username: string,
+  month: number,
   setCommitHistory: Dispatch<SetStateAction<CommitHistoryType>>
 ) => {
-  const apiConfig = new APIConfig(username);
+  const apiConfig = new APIConfig(username, month);
   const dataRefiner = apiConfig.apiDataRefiner();
   setCommitHistory(await dataRefiner.getCommitHistory());
 };

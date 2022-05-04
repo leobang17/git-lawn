@@ -101,7 +101,7 @@ Displays git contributions of specific user.
 | username   | Github username you want to fetch contributions                                               | _Required_ | `-`           | `string`     |
 | grassSpan  | Pixel of each components of days. You can adjust the whole component size with this property. | _Optional_ | `30`          | `number`     |
 | color      | Color theme of this component.                                                                | _Optional_ | `"GREEN"`     | `ColorType`  |
-| month      | How much monthes you want to display. (For now, it is possible under 3 months)                | _Optional_ | `3`           | `number`     |
+| month      | How much monthes you want to display. (For now, it is possible under 3 months)                | _Optional_ | `3`           | `MonthType`  |
 | darkmode   | If you want to use dark theme.                                                                | _Optional_ | `false`       | `boolean`    |
 | grassShape | Shapes of each contribution of days.                                                          | _Optional_ | `"Rectangle"` | `GrassShape` |
 
@@ -111,6 +111,8 @@ Displays git contributions of specific user.
 
 ```typescript
 type ColorType = "GREEN" | "BLUE";
+
+type MonthType = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
 
 type GrassShape = "Rectangle" | "Circle";
 ```
