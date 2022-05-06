@@ -57,31 +57,33 @@ const GitLawn: React.FC<GitLawnProps> = ({
   }
 
   return (
-    <LawnContext.Provider
-      value={defaultLawnPropConfig({
-        grassSpan,
-        color,
-        month,
-        darkmode,
-        grassShape,
-      })}
-    >
-      <GeneralStyleContext.Provider value={generalStyle}>
-        <CommitHistoryContext.Provider value={commitHistory}>
-          <VStack>
-            <ContributionCount />
-            <VSTACK__INLINEFLEX backgroundColor={generalStyle.background}>
-              <MonthRow />
-              <HStack>
-                <DateColumn />
-                <Lawn />
-              </HStack>
-              <GradientInstruction />
-            </VSTACK__INLINEFLEX>
-          </VStack>
-        </CommitHistoryContext.Provider>
-      </GeneralStyleContext.Provider>
-    </LawnContext.Provider>
+    <>
+      <LawnContext.Provider
+        value={defaultLawnPropConfig({
+          grassSpan,
+          color,
+          month,
+          darkmode,
+          grassShape,
+        })}
+      >
+        <GeneralStyleContext.Provider value={generalStyle}>
+          <CommitHistoryContext.Provider value={commitHistory}>
+            <VStack>
+              <ContributionCount />
+              <VSTACK__INLINEFLEX backgroundColor={generalStyle.background}>
+                <MonthRow />
+                <HStack>
+                  <DateColumn />
+                  <Lawn />
+                </HStack>
+                <GradientInstruction />
+              </VSTACK__INLINEFLEX>
+            </VStack>
+          </CommitHistoryContext.Provider>
+        </GeneralStyleContext.Provider>
+      </LawnContext.Provider>
+    </>
   );
 };
 
