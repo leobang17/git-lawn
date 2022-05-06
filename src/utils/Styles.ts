@@ -13,3 +13,7 @@ export const VStack = styled.div`
 export const BoldSpan = styled.span`
   font-weight: bold;
 `;
+
+export const InlineBlock = styled.div`
+  display: inline-block;
+`;

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { CommitHistoryType, GitLawnProps } from "../../../@types";
-import { HStack, VStack } from "../../../utils/Styles";
+import { HStack, InlineBlock, VStack } from "../../../utils/Styles";
 import {
   CommitHistoryContext,
   GeneralStyleContext,
@@ -57,7 +57,7 @@ const GitLawn: React.FC<GitLawnProps> = ({
   }
 
   return (
-    <>
+    <InlineBlock>
       <LawnContext.Provider
         value={defaultLawnPropConfig({
           grassSpan,
@@ -83,7 +83,7 @@ const GitLawn: React.FC<GitLawnProps> = ({
           </CommitHistoryContext.Provider>
         </GeneralStyleContext.Provider>
       </LawnContext.Provider>
-    </>
+    </InlineBlock>
   );
 };
 
