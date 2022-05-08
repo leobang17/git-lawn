@@ -19,6 +19,7 @@ const ContributionCountDom = styled.div<{
 }>`
   /* margin-inline: ${(props) => props.grassSpan}px; */
   margin-inline: 26px;
+  margin-block: 8px;
   color: ${(props) => props.font};
   font-size: 18px;
 `;
