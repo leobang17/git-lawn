@@ -35,3 +35,14 @@ export class ThemeResolver {
     return "LIGHT" as const;
   }
 }
+
+export class FontSizeResolver {
+  constructor(private grassSpan: number) {}
+  public mainFontResolver(): number {
+    return this.grassSpan * 0.6;
+  }
+
+  public contributionFontResolver() {
+    return this.grassSpan * 0.8;
+  }
+}
