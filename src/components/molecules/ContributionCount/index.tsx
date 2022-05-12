@@ -12,15 +12,17 @@ import {
 import commaNumber from "comma-number";
 import { BoldSpan } from "../../../utils/Styles";
 import styled from "styled-components";
+import { FontSizeResolver } from "../../../utils/logics";
 
 const ContributionCountDom = styled.div<{
   font: string;
   grassSpan: number;
+  fontSize: number;
 }>`
-  /* margin-inline: ${(props) => props.grassSpan}px; */
   margin-inline: 26px;
+  margin-block: 8px;
   color: ${(props) => props.font};
-  font-size: 18px;
+  font-size: ${(props) => props.fontSize}px;
 `;
 
 const ContributionCount = () => {
@@ -29,8 +31,10 @@ const ContributionCount = () => {
   const { totalCount } = useContext(CommitHistoryContext) as CommitHistoryType;
   const { font } = useContext(GeneralStyleContext) as GeneralColorProps;
 
+  const fontSize = new FontSizeResolver(grassSpan).contributionFontResolver();
+
   return (
-    <ContributionCountDom font={font} grassSpan={grassSpan}>
+    <ContributionCountDom font={font} grassSpan={grassSpan} fontSize={fontSize}>
       <BoldSpan>{commaNumber(totalCount)} contributions</BoldSpan> in the last{" "}
       {month} month.
     </ContributionCountDom>
