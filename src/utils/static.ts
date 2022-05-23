@@ -63,10 +63,16 @@ export const GRASS_COLORS: GrassColor = {
     DARK: {
       GREEN: ["#292D34", "#20432C", "#2E6B38", "#52A44E", "#6DD065"],
       BLUE: ["aa"],
+      ORANGE: [],
+      PINK: [],
+      PURPLE: [],
     },
     LIGHT: {
       GREEN: ["#EBEDF0", "#ACE7AE", "#69C16E", "#549F57", "#386C3E"],
-      BLUE: ["aa"],
+      BLUE: ["#EBEDF0", "#C5EAFF", "#89D5FF", "#2CB4FF", "#00AFE7"],
+      ORANGE: ["#EBEDF0", "#FFF3C8", "#FFD976", "#FFC01F", "#FF9900"],
+      PINK: ["#EBEDF0", "#FFD6CF", "#FFC4B9", "#FFA595", "#FF7056"],
+      PURPLE: ["#EBEDF0", "#CED5FF", "#97A5FF", "#8976FF", "#6B37FF"],
     },
   },
 };

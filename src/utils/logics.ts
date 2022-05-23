@@ -43,6 +43,6 @@ export class FontSizeResolver {
   }
 
   public contributionFontResolver() {
-    return this.grassSpan * 0.8;
+    return this.grassSpan * 0.65;
   }
 }

@@ -1,6 +1,6 @@
 {
-  "name": "git-lawn",
-  "version": "0.0.9",
+  "name": "git-lawn-hackathon",
+  "version": "0.0.1",
   "private": false,
   "scripts": {
     "start": "react-scripts start",

@@ -74,7 +74,7 @@ export interface PushEventType {
 // Style Property Type
 export type ColorIdx = 0 | 1 | 2 | 3 | 4;
 
-export type ColorType = "GREEN" | "BLUE";
+export type ColorType = "GREEN" | "BLUE" | "ORANGE" | "PINK" | "PURPLE";
 
 export type ThemeType = "DARK" | "LIGHT";
 
