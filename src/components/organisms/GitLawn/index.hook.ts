@@ -14,11 +14,11 @@ export const defaultLawnPropConfig = (params: LawnProps) => {
 };
 
 export const fetchData = async (
-  username: string,
+  challengeId: string,
   month: number,
   setCommitHistory: Dispatch<SetStateAction<CommitHistoryType>>
 ) => {
-  const apiConfig = new APIConfig(username, month);
+  const apiConfig = new APIConfig(challengeId, month);
   const dataRefiner = apiConfig.apiDataRefiner();
   setCommitHistory(await dataRefiner.getCommitHistory());
 };

@@ -18,7 +18,7 @@ import { defaultLawnPropConfig, fetchData, isNotLoaded } from "./index.hook";
 import { VSTACK__INLINEFLEX } from "./index.style";
 
 const GitLawn: React.FC<GitLawnProps> = ({
-  username,
+  challengeId,
   grassSpan,
   color,
   month,
@@ -48,7 +48,7 @@ const GitLawn: React.FC<GitLawnProps> = ({
 
   // Effects
   useEffect(() => {
-    fetchData(username, _month, setCommitHistory);
+    fetchData(challengeId, _month, setCommitHistory);
   }, []);
 
   // Render
@@ -70,7 +70,7 @@ const GitLawn: React.FC<GitLawnProps> = ({
         <GeneralStyleContext.Provider value={generalStyle}>
           <CommitHistoryContext.Provider value={commitHistory}>
             <VStack>
-              <ContributionCount />
+              {/* <ContributionCount /> */}
               <VSTACK__INLINEFLEX backgroundColor={generalStyle.background}>
                 <MonthRow />
                 <HStack>

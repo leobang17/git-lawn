@@ -7,6 +7,7 @@ import APIDataGetter from "./APIDataGetter";
 import APIDataRefiner from "./APIDataRefiner";
 import DateServiceImpl from "./DateServiceImpl";
 import RequestInstance from "./RequestInstance";
+import { ServiceDataRefiner } from "./ServerDataRefiner";
 
 export default class APIConfig {
   private username: string;
@@ -30,6 +31,7 @@ export default class APIConfig {
   }
 
   public apiDataRefiner(): DataRefinerAbstract {
-    return new APIDataRefiner(this.apiDataGetter(), this.dateService());
+    // return new APIDataRefiner(this.apiDataGetter(), this.dateService());
+    return new ServiceDataRefiner(this.username);
   }
 }

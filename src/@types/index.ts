@@ -10,7 +10,7 @@ export interface LawnProps {
 }
 
 export interface GitLawnProps extends LawnProps {
-  username: string;
+  challengeId: string;
 }
 
 export type LawnPropsRequired = Required<LawnProps>;

@@ -1,1 +1,1 @@
-export { default as GitLawn } from "./organisms/GitLawn";
+export { default as GitLawnServer } from "./organisms/GitLawn";

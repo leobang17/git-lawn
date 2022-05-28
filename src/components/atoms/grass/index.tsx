@@ -44,13 +44,13 @@ const Grass: React.FC<
         onMouseEnter={mouseEnterHandler}
         onMouseLeave={mouseLeaveHandler}
       >
-        {isHovered && (
+        {/* {isHovered && (
           <Contribution
             date={date}
             count={commitCount}
             backgroundColor={contributionBackground}
           />
-        )}
+        )} */}
       </GrassDom>
     </>
   );
