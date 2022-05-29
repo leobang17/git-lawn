@@ -17,7 +17,7 @@ export const MonthMapper = [
   "Sept",
   "Oct",
   "Nov",
-  "Dev",
+  "Dec",
 ];
 
 export const DayMapper = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
@@ -68,8 +68,8 @@ export const GRASS_COLORS: GrassColor = {
       PURPLE: [],
     },
     LIGHT: {
-      GREEN: ["#EBEDF0", "#ACE7AE", "#69C16E", "#549F57", "#386C3E"],
-      BLUE: ["#EBEDF0", "#C5EAFF", "#89D5FF", "#2CB4FF", "#00AFE7"],
+      GREEN: ["#EBEDF0", "#386C3E", "#69C16E", "#549F57", "#386C3E"],
+      BLUE: ["#EBEDF0", "#00AFE7", "#89D5FF", "#2CB4FF", "#00AFE7"],
       ORANGE: ["#EBEDF0", "#FFF3C8", "#FFD976", "#FFC01F", "#FF9900"],
       PINK: ["#EBEDF0", "#FFD6CF", "#FFC4B9", "#FFA595", "#FF7056"],
       PURPLE: ["#EBEDF0", "#CED5FF", "#97A5FF", "#8976FF", "#6B37FF"],

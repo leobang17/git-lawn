@@ -77,7 +77,7 @@ const GitLawn: React.FC<GitLawnProps> = ({
                   <DateColumn />
                   <Lawn />
                 </HStack>
-                <GradientInstruction />
+                {/* <GradientInstruction /> */}
               </VSTACK__INLINEFLEX>
             </VStack>
           </CommitHistoryContext.Provider>

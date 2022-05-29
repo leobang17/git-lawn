@@ -1,6 +1,17 @@
-import { CommitHistoryType } from "../@types";
+import { CommitHistoryType, CommitRowType } from "../@types";
 import { DataRefinerAbstract, DateService } from "./api.interfaces";
 import axios from "axios";
+
+type ServerRes = {
+  commitRows: ServerRows[];
+  maxCount: number;
+  totalCount: number;
+};
+
+type ServerRows = {
+  date: string;
+  count: number;
+};
 
 export class ServiceDataRefiner implements DataRefinerAbstract {
   private BASE_URL = "http://localhost:8000";
@@ -16,8 +27,19 @@ export class ServiceDataRefiner implements DataRefinerAbstract {
         date: currentDate,
       },
     });
-    const commitHistory = res.data as CommitHistoryType;
-    return commitHistory;
+    const commitHistory = res.data as ServerRes;
+    const commitRows = this.stringToDate(commitHistory.commitRows);
+    return { ...commitHistory, commitRows };
+  }
+
+  private stringToDate(commitRows: ServerRows[]): CommitRowType[] {
+    const res = [...commitRows].map((commitRow: ServerRows) => {
+      return {
+        date: new Date(commitRow.date),
+        count: commitRow.count,
+      } as CommitRowType;
+    });
+    return res;
   }
 
   private getCurrentDatetime() {
